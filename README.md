@@ -4,11 +4,12 @@ Projet web 3ème année de licence informatique
 ## A faire:
 
 <b>Front End</b>
-- [ ] Interface d’accueil du joueur non connecté (bouton se connecter, bouton faire un questionnaire)
-- [ ] Interface d’accueil du joueur connecté (bouton se déconnecter, choix d'un mode de jeu, monde ou continent)
+- [ ] Interface d’accueil du joueur  (bouton se connecter/deconnecter, bouton faire un questionnaire, si connecté choix d'un mode de jeu, monde ou continent)
 - [ ] Gestion point (barème, nombre de clique autorisé)
 - [ ] Gestion clique sur la carte : affichage des frontières+ info sur le pays (wikipedia) + photo du pays
+
 - [ ] interface administrateur : ajout de questionnaire, visualisation des questionnaires, supprimer les comptes joueur
+- [ ] pour + tard: interface profil du joueur connecté : changer mot de passe/pseudo/addresse mail, historique des partie(point, etc), info diverse sur le profil
 
 <b>Back end</b>
 - [ ] Créer base de donnée mysql
