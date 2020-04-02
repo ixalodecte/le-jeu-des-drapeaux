@@ -47,6 +47,8 @@
 				.setContent("Hello click détecté sur la carte !<br/> " + e.latlng.toString()+ "<br/>en GeoJSON: " + coordGeoJSON(e.latlng,7) + "<br/>Niveau de  Zoom: " + map.getZoom().toString())
 				.openOn(map);
 			}
+			
+			//function estDansPays()
 			// Association Evenement/Fonction handler
 			map.on('click', onMapClick);
 		</script>
