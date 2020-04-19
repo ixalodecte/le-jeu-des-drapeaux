@@ -19,6 +19,6 @@ Projet web 3ème année de licence informatique
 - [ ] Créer des questionnaires (json en premier puis stocker dans une table)
 
 ## Fichier
-- Dessiner les contours des pays: https://github.com/leodechaumet/le-jeu-des-drapeaux/tree/master/web/data/countries-master
-- Coordonnées des capitales et pays : https://github.com/leodechaumet/le-jeu-des-drapeaux/tree/master/web/data/geojson-world-master
-- Drapeaux: https://github.com/leodechaumet/le-jeu-des-drapeaux/tree/master/web/data/country-flags-master
+- Dessiner les contours des pays: https://github.com/leodechaumet/le-jeu-des-drapeaux/tree/master/web/data/countours
+- Coordonnées des capitales et pays : https://github.com/leodechaumet/le-jeu-des-drapeaux/tree/master/web/data/infoPays
+- Drapeaux: https://github.com/leodechaumet/le-jeu-des-drapeaux/tree/master/web/data/drapeaux
