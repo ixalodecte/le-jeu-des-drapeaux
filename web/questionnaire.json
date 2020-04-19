@@ -52,7 +52,7 @@
             "landlocked": false,
             "borders": ["AND", "BEL", "DEU", "ITA", "LUX", "MCO", "ESP", "CHE"],
             "area": 551695,
-            "flag": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Flag_of_France.svg"
+            "flag": "data/drapeaux/fra.svg"
         }
       },
       { "type": "Feature",
@@ -110,7 +110,7 @@
           "landlocked": false,
           "borders": [],
           "area": 270467,
-          "flag": "https://upload.wikimedia.org/wikipedia/commons/3/3e/Flag_of_New_Zealand.svg"
+          "flag": "data/drapeaux/nzl.svg"
           }
         },
       { "type": "Feature",
