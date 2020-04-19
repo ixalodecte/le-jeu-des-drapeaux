@@ -89,7 +89,8 @@
 
         <!-- Drapeau du pays à trouver -->
         <div class="col-2">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/langfr-1024px-Flag_of_France.svg.png" alt="drapeaux france" height="100px">
+            <img id="drapeau" src="https://www.w3schools.com/images/compatible_chrome.gif" alt="Smiley face" width="42" height="42">
+
         </div>
         
         
@@ -180,20 +181,14 @@
 
 
         var questionnaire
-    
-        $(document).ready(function() {
 
-            $.getJSON('questionnaire.json', function(data) {
-                questionnaire = data;
-                console.log(questionnaire);
-            });
-        });
-        var contours={}
+
+        var contours=-1
         var pointTotal = 0;
         var nombreDeQuestion = 10;
-        var avancement = 0;
-        var centrePays = [48.52, 2.2];
-        var nomPays = "France";
+        var avancement = -1;
+        var centrePays = [];
+        var nomPays = "";
         var essai = 0;
         var succes = false;
         var pointQuestion = 0;
@@ -203,6 +198,21 @@
             essai = 0;
             succes = false;
             pointQuestion = 0;
+
+            if (avancement>0) {
+                map.removeLayer(contours);
+            }
+
+            var pays = questionnaire["features"][avancement];
+            nomPays = pays.properties.name.common;
+            centrePays = pays.properties.latlng;
+
+            //Récupération contours du pays
+            contours = L.geoJSON(pays, {style:{color:"green", fillOpacity: 0, opacity:0, cursor:"crosshair"}}).addTo(map); //On place le plolygone, invisible pour l'instant
+            contours.on("click", onCountryClick)
+            $(".leaflet-interactive").attr("style","cursor:crosshair"); // On change le curseur pour qu'il soit pareil que la map.
+
+            $("#drapeau").attr("src",pays.properties.flag);
             //Actualiser centre pays, drapeaux, contour, (faire fonction pour les récupérer)
             updateProgressBar(avancement, nombreDeQuestion);
 
@@ -316,12 +326,21 @@
             }
         }
         
-        var contours = L.geoJSON(contours, {style:{color:"green", fillOpacity: 0, opacity:0, cursor:"crosshair"}}).addTo(map); //On place le plolygone, invisible pour l'instant
         $(document).ready(function(){
-            $(".leaflet-interactive").attr("style","cursor:crosshair")}); // On change le curseur pour qu'il soit pareil que la map.
+            $.getJSON('https://raw.githubusercontent.com/leodechaumet/le-jeu-des-drapeaux/master/web/questionnaire.json', function(data) {
+            questionnaire = data;
+            nombreDeQuestion = questionnaire.properties.size;
+            nouvelleQuestion()
+
+            
+            });
+            console.log(questionnaire);
+
             // Association Evenement/Fonction handler
             map.on('click', onMapClick);
-            contours.on("click", onCountryClick)
+            $("#buttonSuivant").click(nouvelleQuestion);
+            
+        });
             
             
         </script>
