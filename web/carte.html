@@ -83,7 +83,7 @@
         <!-- Boutons pour passer à la question suivante + infos sur le pays -->
         <div id = "apresTrouve" class="col-4">
             <p id = "message">_</p>
-            <button id = "buttonInfo" style="bottom: 3px;" type ="button" class="btn btn-primary" data-toggle = "collapse" data-target="#infoPays" disabled>info</button>
+            <button id = "buttonInfo" style="bottom: 3px;" type ="button" class="btn btn-primary" onclick="$('#infoPays').css('visibility', 'visible')" disabled>info</button>
             <button id = "buttonSuivant" style="float: right;margin-right: 15px;" type ="button" class="btn btn-primary" disabled>suivant</button>
         </div>
 
@@ -99,9 +99,9 @@
     
     <!-- Carte -->
     <div style="position: relative;">
-        <div id="maDiv" style="width: 100%; height: 600px; z-index: 0;"></div>
+        <div id="maDiv" style="width: 100%; height: 500px; z-index: 0;"></div>
         
-        <div id = "infoPays" class="collapse" style="top:40px;right:80px;position: absolute;z-index:1;"> <!-- inspiré de w3school -->            
+        <div id = "infoPays" style="top:40px;right:80px;position: absolute;z-index:1;visibility:hidden"> <!-- inspiré de w3school -->            
             <div class="card" style="width:400px">
                 <div class="card-img-top" style="width:100%"><div id="demo" class="carousel slide" data-ride="carousel">
                     
@@ -185,8 +185,8 @@
 
         var contours=-1
         var pointTotal = 0;
-        var nombreDeQuestion = 10;
-        var avancement = -1;
+        var nombreDeQuestion = 3;
+        var avancement = 0;
         var centrePays = [];
         var nomPays = "";
         var essai = 0;
@@ -199,34 +199,49 @@
             succes = false;
             pointQuestion = 0;
 
-            if (avancement>0) {
+            if (avancement>1) {
                 map.removeLayer(contours);
             }
+            if (avancement <= nombreDeQuestion){
+            
 
-            var pays = questionnaire["features"][avancement];
-            nomPays = pays.properties.name.common;
-            centrePays = pays.properties.latlng;
+                var pays = questionnaire["features"][avancement-1];
+                nomPays = pays.properties.name.common;
+                centrePays = pays.properties.latlng;
 
-            //Récupération contours du pays
-            contours = L.geoJSON(pays, {style:{color:"green", fillOpacity: 0, opacity:0, cursor:"crosshair"}}).addTo(map); //On place le plolygone, invisible pour l'instant
-            contours.on("click", onCountryClick)
-            $(".leaflet-interactive").attr("style","cursor:crosshair"); // On change le curseur pour qu'il soit pareil que la map.
+                //Récupération contours du pays
+                contours = L.geoJSON(pays, {style:{color:"green", fillOpacity: 0, opacity:0, cursor:"crosshair"}}).addTo(map); //On place le plolygone, invisible pour l'instant
+                contours.on("click", onCountryClick)
+                $(".leaflet-interactive").attr("style","cursor:crosshair"); // On change le curseur pour qu'il soit pareil que la map.
 
-            $("#drapeau").attr("src",pays.properties.flag);
-            //Actualiser centre pays, drapeaux, contour, (faire fonction pour les récupérer)
-            updateProgressBar(avancement, nombreDeQuestion);
+                $("#drapeau").attr("src",pays.properties.flag);
+                //Actualiser centre pays, drapeaux, contour, (faire fonction pour les récupérer)
+                updateProgressBar(avancement, nombreDeQuestion);
 
-            document.getElementById("buttonInfo").disabled = true;
-            document.getElementById("buttonSuivant").disabled = true;
+                document.getElementById("buttonInfo").disabled = true;
+                document.getElementById("buttonSuivant").disabled = true;
 
-            $("#message").text("_");
-            $("#incrementPoint").text(" ");
-            $("#compteurPoint").text(pointTotal);
+                $("#message").text("_");
+                $("#incrementPoint").text(" ");
+                $("#compteurPoint").text(pointTotal);
+                $("#infoPays").css("visibility", "hidden");
+                console.log(avancement);
+            }
+            else{
+                fin();
+            }
+
 
         }
 
+        function fin(){
+            $("#message").text("Questionnaire fini");
+            $("#incrementPoint").text(" ");
+            $("#compteurPoint").text(pointTotal);
+        }
+
         function updateProgressBar (avancement, nombreDeQuestion){
-            $("#progress-bar").css("width", 100/nombreDeQuestion*avancement + "%")
+            $("#progress-bar").css("width", 100/(nombreDeQuestion*avancement) + "%")
         }
 
         function calculPoint (nbEssai){
@@ -330,6 +345,7 @@
             $.getJSON('https://raw.githubusercontent.com/leodechaumet/le-jeu-des-drapeaux/master/web/questionnaire.json', function(data) {
             questionnaire = data;
             nombreDeQuestion = questionnaire.properties.size;
+            nombreDeQuestion = 3
             nouvelleQuestion()
 
             
