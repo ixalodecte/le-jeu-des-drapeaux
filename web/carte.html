@@ -1,384 +1,194 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
-<head>
-    <title>Leaflet.js avec couche Stamen Watercolor</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-    
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-    
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
-    
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    <style>
-        /* Make the image fully responsive */
-        .carousel-inner img {
-            width: 100%;
-            height: 100%;
-        }
+    <head>
+        <title>Leaflet.js avec couche Stamen Watercolor</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
         
-        p {
-            font-size: x-large;
-            padding-left: 10px;
-        }
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
         
-        #infoPays {
-            cursor:move;
-        }
-    </style>
-    
-</head>
-<body>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <!-- Brand -->
-        <a class="navbar-brand" href="#">Logo</a>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link 1</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link 2</a>
-            </li>
-            
-            <!-- Dropdown -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                    Dropdown link
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Link 1</a>
-                    <a class="dropdown-item" href="#">Link 2</a>
-                    <a class="dropdown-item" href="#">Link 3</a>
-                </div>
-            </li>
-        </ul>
-    </nav> 
-    
-    
-    <!-- La barre de progression (avancement du questionnaire)-->
-    <div class="progress">
-        <div class="progress-bar" style="width:20%"></div>
-    </div>
-    
-    <!-- En tete -->
-    <div class="row bg-light text-dark">
-        <div class="col-3"><p>Questionnaire : Monde Entier</p></div>
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         
-        <!-- Compteur de points -->
-        <div class="col-3"><p>Nombre de points : </p> <p> <span  id="compteurPoint">0</span>  <span  id="incrementPoint" style="color: forestgreen;"></span> </p></div>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         
-        <!-- Boutons pour passer à la question suivante + infos sur le pays -->
-        <div id = "apresTrouve" class="col-4">
-            <p id = "message">_</p>
-            <button id = "buttonInfo" style="bottom: 3px;" type ="button" class="btn btn-primary" onclick="switchVisibility()" disabled>info</button>
-            <button id = "buttonSuivant" style="float: right;margin-right: 15px;" type ="button" class="btn btn-primary" disabled>suivant</button>
-        </div>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
         
-        <!-- Drapeau du pays à trouver -->
-        <div class="col-2">
-            <img id="drapeau" src="" alt="Smiley face" width="140" style="border: 2px solid black;">
-            
-        </div>
-        
-        
-        
-    </div>
-    
-    <!-- Carte -->
-    <div style="position: relative;">
-        <div id="maDiv" style="width: 100%; height: 500px; z-index: 0;"></div>
-        
-        <!-- Informations sur le pays-->
-        <div id = "infoPays" style="top:40px;right:80px;position: absolute;z-index:1;visibility:hidden"> <!-- inspiré de w3school -->            
-            <div class="card p-3 mb-2 bg-light" style="width:1000px">
-                <div style="width:100%">
-                    <div id="demo" class="carousel slide" data-ride="carousel" style="float: left;width: 400px;">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-                        
-                        <!-- Les lien carrousel -->
-                        <div class="carousel-inner" >
-                            <div class="carousel-item active">
-                                <img src="https://media.camptocamp.org/c2corg-active/1237947425_185980712.jpg" alt="New York" width="1100" height="300">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Tour_eiffel_at_sunrise_from_the_trocadero.jpg/800px-Tour_eiffel_at_sunrise_from_the_trocadero.jpg" alt="tour eiffel" width="100px" height="100px">
-                            </div>
-                            <div class="carousel-item">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/800px-Crab_Nebula.jpg" alt="Chicago" width="1100" height="300">
+        <style>
+            /* Make the image fully responsive */
+            .carousel-inner img {
+                width: 100%;
+                height: 100%;
+            }
+            
+            p {
+                font-size: x-large;
+                padding-left: 10px;
+            }
+            
+            #infoPays {
+                cursor:move;
+            }
+        </style>
+        
+    </head>
+
+
+    <body>
+
+        <!-- A retirer plus tard (en tête commune à toutes les page)-->
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <!-- Brand -->
+            <a class="navbar-brand" href="#">Logo</a>
+            
+            <!-- Links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link 2</a>
+                </li>
+                
+                <!-- Dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Dropdown link
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Link 1</a>
+                        <a class="dropdown-item" href="#">Link 2</a>
+                        <a class="dropdown-item" href="#">Link 3</a>
+                    </div>
+                </li>
+            </ul>
+        </nav> 
+        
+        <!-- La barre de progression (avancement du questionnaire)-->
+        <div class="progress">
+            <div class="progress-bar" style="width:20%"></div>
+        </div>
+        
+        <!-- "Tableau de bord" du questionnaire -->
+        <div class="row bg-light text-dark">
+
+            <!-- Nom du questionnaire -->
+            <div class="col-3" id="nomQuestionnaire"><p>Questionnaire : Monde Entier</p></div>
+            
+            <!-- Compteur de points -->
+            <div class="col-3"><p>Nombre de points : </p> <p> <span  id="compteurPoint">0</span>  <span  id="incrementPoint" style="color: forestgreen;"></span> </p></div>
+            
+            <!-- Boutons pour passer à la question suivante + infos sur le pays -->
+            <div id = "boutonInfoSuivant" class="col-4">
+                <p id = "message">_</p>
+                <button id = "boutonInfo" style="bottom: 3px;" type ="button" class="btn btn-primary" onclick="switchVisibility()" disabled>info</button>
+                <button id = "boutonSuivant" style="float: right;margin-right: 15px;" type ="button" class="btn btn-primary" disabled>suivant</button>
+            </div>
+            
+            <!-- Drapeau du pays à trouver -->
+            <div class="col-2">
+                <img id="drapeau" src="" alt="Trouver ce drapeau" width="140" style="border: 2px solid black;">
+            </div>
+        </div>
+        
+        <div style="position: relative;">
+            
+            <!-- La Carte -->
+            <div id="maDiv" style="width: 100%; height: 500px; z-index: 0;"></div>
+            
+            <!-- Informations sur le pays (A modifier)-->
+            <div id = "infoPays" style="top:40px;right:80px;position: absolute;z-index:1;visibility:hidden"> <!-- inspiré de w3school -->            
+                <div class="card p-3 mb-2 bg-light" style="width:1000px">
+                    <div style="width:100%">
+                        <div id="demo" class="carousel slide" data-ride="carousel" style="float: left;width: 400px;">
+
+                            <!-- Les lien carrousel -->
+                            <div class="carousel-inner" >
+                                <div class="carousel-item active">
+                                    <img src="https://media.camptocamp.org/c2corg-active/1237947425_185980712.jpg" alt="New York" width="1100" height="300">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Tour_eiffel_at_sunrise_from_the_trocadero.jpg/800px-Tour_eiffel_at_sunrise_from_the_trocadero.jpg" alt="tour eiffel" width="100px" height="100px">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/Crab_Nebula.jpg/800px-Crab_Nebula.jpg" alt="Chicago" width="1100" height="300">
+                                </div>
                             </div>
                             
+                            <!-- Control droite et gauche -->
+                            <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </a>
+                            <a class="carousel-control-next" href="#demo" data-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </a>
                         </div>
                         
-                        <!-- Control droite et gauche -->
-                        <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                            <span class="carousel-control-prev-icon"></span>
-                        </a>
-                        <a class="carousel-control-next" href="#demo" data-slide="next">
-                            <span class="carousel-control-next-icon"></span>
-                        </a>
+                        <!-- Texte provenant de wikipedia -->
+                        <div class="card-body" style="float: right; width: 500px;">
+                            <h4 id="infoTitre">John Doe</h4>
+                            <p id="infoDescription" style="font-size: medium;">Some example text some example text. John Doe is an architect and engineer</p>
+                            <a href="#" class="btn btn-primary">See Profile</a>
+                        </div>
                     </div>
                     
-                    <div class="card-body" style="float: right; width: 500px;">
-                        <h4 id="infoTitre">John Doe</h4>
-                        <p id="infoDescription" style="font-size: medium;">Some example text some example text. John Doe is an architect and engineer</p>
-                        <a href="#" class="btn btn-primary">See Profile</a>
-                    </div>
                 </div>
                 
             </div>
             
-        </div>
-        
-        <script>
-            // bornes pour empecher la carte StamenWatercolor de "dériver" trop loin...
-            var northWest = L.latLng(90, -180);
-            var southEast = L.latLng(-90, 180);
-            var bornes = L.latLngBounds(northWest, southEast);
-            // Initialisation de la couche StamenWatercolor
-            var coucheStamenWatercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
-                attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-                subdomains: 'abcd',
-                ext: 'jpg'
-            });
-            // Initialisation de la carte et association avec la div
-            var map = new L.Map('maDiv', {
-                center: [48.858376, 2.294442],
-                minZoom: 2,
-                maxZoom: 18,
-                zoom: 5,
-                maxBounds: bornes
-            });
-            //var map = L.map('maDiv').setView([48.858376, 2.294442],5);
-            // Affichage de la carte
-            map.addLayer(coucheStamenWatercolor);
-            // Juste pour changer la forme du curseur par défaut de la souris
-            document.getElementById('maDiv').style.cursor = 'crosshair'
-            //map.fitBounds(bornes);
-            // Initilisation d'un popup
-            var popup = L.popup();
-            // Fonction de conversion au format GeoJSON
-            function coordGeoJSON(latlng,precision) { 
-                return '[' +
-                L.Util.formatNum(latlng.lng, precision) + ',' +
-                L.Util.formatNum(latlng.lat, precision) + ']';
-            }
-            function switchVisibility(){
-                if ($('#infoPays').css('visibility') == "visible"){
-                    $('#infoPays').css('visibility', 'hidden');
-                }
-                else{
-                    $('#infoPays').css('visibility', 'visible');
-                }
-            }
-            
-            
-            var questionnaire
-            
-            
-            var contours=-1
-            var pointTotal = 0;
-            var nombreDeQuestion = 3;
-            var avancement = 0;
-            var centrePays = [];
-            var nomPays = "";
-            var essai = 0;
-            var succes = false;
-            var pointQuestion = 0;
-            
-            function nouvelleQuestion (){
-                avancement += 1;
-                essai = 0;
-                succes = false;
-                pointQuestion = 0;
-                updateProgressBar(avancement, nombreDeQuestion);
-                
-                
-                if (avancement>1) {
-                    map.removeLayer(contours);
-                }
-                if (avancement <= nombreDeQuestion){
-                    
-                    
-                    var pays = questionnaire["features"][avancement-1];
-                    nomPays = pays.properties.name.common;
-                    centrePays = pays.properties.latlng;
-                    
-                    //Récupération contours du pays
-                    contours = L.geoJSON(pays, {style:{color:"green", fillOpacity: 0, opacity:0, cursor:"crosshair"}}).addTo(map); //On place le plolygone, invisible pour l'instant
-                    contours.on("click", onCountryClick)
-                    $(".leaflet-interactive").attr("style","cursor:crosshair"); // On change le curseur pour qu'il soit pareil que la map.
-                    
-                    $("#drapeau").attr("src",pays.properties.flag);
-                    //Actualiser centre pays, drapeaux, contour, (faire fonction pour les récupérer)
-                    
-                    document.getElementById("buttonInfo").disabled = true;
-                    document.getElementById("buttonSuivant").disabled = true;
-                    
-                    urlInfoPays = "https://en.wikipedia.org/api/rest_v1/page/summary/"+nomPays.replace(" ", "_")+"?redirect=false"
-                    wikimediaInfoPays(urlInfoPays);
-                    $("#infoTitre").text(nomPays);
-                    
-                    $("#message").text("_");
-                    $("#incrementPoint").text(" ");
-                    $("#compteurPoint").text(pointTotal);
-                    $("#infoPays").css("visibility", "hidden");
-                    console.log(avancement);
-                }
-                else{
-                    fin();
-                }
-                
-                
-            }
-            
-            function wikimediaInfoPays(url){
-                var info;
-                
-                $.getJSON(url, function(data){
-                    $("#infoDescription").text(data["extract"])
-                    
-                })
-                
-            }
-            
-            function fin(){
-                $("#message").text("Questionnaire fini");
-                $("#incrementPoint").text(" ");
-                $("#compteurPoint").text(pointTotal);
-            }
-            
-            function updateProgressBar (avancement, nombreDeQuestion){
-                $(".progress-bar").css("width", (100/nombreDeQuestion)*(avancement-1) + "%");
-            }
-            
-            function calculPoint (nbEssai){
-                return Math.floor(1000/nbEssai);
-            }
-            
-            
-            // Fonction qui réagit au clic sur la carte (e contiendra les données liées au clic)
-            function onMapClick(e) {
-                if (!succes){
-                    essai += 1
-                    $("#message").text("Essai n°" + essai+ ", vous êtes à " + Math.floor(distance(e.latlng.lat, e.latlng.lng, centrePays[0], centrePays[1]))+ "km");
-                }
-                //$("#message").
-            }
-            
-            // Fonction qui réagit au clic sur un pays (e contiendra les données liées au clic)
-            function onCountryClick(e){
-                if (!succes){
-                    essai +=1
-                    contours.setStyle({fillOpacity: 0.3, opacity:0.5}); //On affiche les contours
-                    map.setView(centrePays,5); //Zoom sur le pays
-                    $("#message").text("Essai n°" + (essai) + " : Bravo, vous avez trouvé!");
-                    pointQuestion = calculPoint(essai);
-                    $("#incrementPoint").text(" + " + pointQuestion);
-                    pointTotal += pointQuestion;
-                    
-                    succes = true;
-                    
-                    //On active les boutons "question suivante" et "info sur le pays"
-                    document.getElementById("buttonInfo").disabled = false;
-                    document.getElementById("buttonSuivant").disabled = false;
-                }
-            }
-            
-            function distance(lat1, lon1, lat2, lon2) { //lien : https://www.geodatasource.com/developers/javascript
-                if ((lat1 == lat2) && (lon1 == lon2)) {
-                    return 0;
-                }
-                else {
-                    var radlat1 = Math.PI * lat1/180;
-                    var radlat2 = Math.PI * lat2/180;
-                    var theta = lon1-lon2;
-                    var radtheta = Math.PI * theta/180;
-                    var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-                    if (dist > 1) {
-                        dist = 1;
-                    }
-                    dist = Math.acos(dist);
-                    dist = dist * 180/Math.PI;
-                    dist = dist * 60 * 1.1515;
-                    dist = dist * 1.609344
-                    return dist;
-                }
-            }
-            
-            
-            dragElement(document.getElementById("infoPays"));
-            
-            function dragElement(elmnt) {  //source : https://www.w3schools.com/howto/howto_js_draggable.asp
-                var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-                if (document.getElementById(elmnt.id + "header")) {
-                    // if present, the header is where you move the DIV from:
-                    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-                } else {
-                    // otherwise, move the DIV from anywhere inside the DIV:
-                    elmnt.onmousedown = dragMouseDown;
-                }
-                
-                function dragMouseDown(e) {
-                    e = e || window.event;
-                    e.preventDefault();
-                    // get the mouse cursor position at startup:
-                    pos3 = e.clientX;
-                    pos4 = e.clientY;
-                    document.onmouseup = closeDragElement;
-                    // call a function whenever the cursor moves:
-                    document.onmousemove = elementDrag;
-                }
-                
-                function elementDrag(e) {
-                    e = e || window.event;
-                    e.preventDefault();
-                    // calculate the new cursor position:
-                    pos1 = pos3 - e.clientX;
-                    pos2 = pos4 - e.clientY;
-                    pos3 = e.clientX;
-                    pos4 = e.clientY;
-                    // set the element's new position:
-                    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-                    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-                }
-                function closeDragElement() {
-                    // stop moving when mouse button is released:
-                    document.onmouseup = null;
-                    document.onmousemove = null;
-                }
-            }
-            
-            $(document).ready(function(){
-                $.getJSON('https://raw.githubusercontent.com/leodechaumet/le-jeu-des-drapeaux/master/web/questionnaire.json', function(data) {
-                    questionnaire = data;
-                    nombreDeQuestion = questionnaire.properties.size;
-                    nombreDeQuestion = 3
-                    nouvelleQuestion()
-                    
-                    
+            <!-- Script pour la carte -->
+            <script>
+                // bornes pour empecher la carte StamenWatercolor de "dériver" trop loin...
+                var northWest = L.latLng(90, -180);
+                var southEast = L.latLng(-90, 180);
+                var bornes = L.latLngBounds(northWest, southEast);
+                // Initialisation de la couche StamenWatercolor
+                var coucheStamenWatercolor = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.{ext}', {
+                    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    subdomains: 'abcd',
+                    ext: 'jpg'
                 });
-                
-                // Association Evenement/Fonction handler
-                map.on('click', onMapClick);
-                $("#buttonSuivant").click(nouvelleQuestion);
-                
-            });
-            
-            
-        </script>
+                // Initialisation de la carte et association avec la div
+                var map = new L.Map('maDiv', {
+                    center: [48.858376, 2.294442],
+                    minZoom: 2,
+                    maxZoom: 18,
+                    zoom: 5,
+                    maxBounds: bornes
+                });
+                //var map = L.map('maDiv').setView([48.858376, 2.294442],5);
+                // Affichage de la carte
+                map.addLayer(coucheStamenWatercolor);
+                // Juste pour changer la forme du curseur par défaut de la souris
+                document.getElementById('maDiv').style.cursor = 'crosshair'
+                //map.fitBounds(bornes);
+                // Initilisation d'un popup
+                var popup = L.popup();
+                // Fonction de conversion au format GeoJSON
+                function coordGeoJSON(latlng,precision) { 
+                    return '[' +
+                    L.Util.formatNum(latlng.lng, precision) + ',' +
+                    L.Util.formatNum(latlng.lat, precision) + ']';
+                }
+                function switchVisibility(){
+                    if ($('#infoPays').css('visibility') == "visible"){
+                        $('#infoPays').css('visibility', 'hidden');
+                    }
+                    else{
+                        $('#infoPays').css('visibility', 'visible');
+                    }
+                }
+            </script>
+
+        <script src="script/carte.js"></script>
     </body>
-    </html>
+</html>
     
