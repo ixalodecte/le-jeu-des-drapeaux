@@ -12,11 +12,12 @@ if (isset($_GET["iso"])){
     $select->execute();
     if($select->rowCount()>0)
     {
-        //echo"you are connected ";
-        $data=$select->fetchAll(PDO::FETCH_ASSOC);
-        $data[0]["drapeau"] = "images/drapeaux/$iso.svg";
+        $data=$select->fetch(PDO::FETCH_ASSOC);
+        $data["drapeau"] = "images/drapeaux/$iso.svg";
+        $data = array_map('utf8_encode' ,$data);
         echo json_encode($data);
         
     }else 
     echo "code pays invalide";
 }
+?>

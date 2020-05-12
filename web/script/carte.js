@@ -27,7 +27,7 @@ function nouvelleQuestion (){
         $("#infoPays").css("visibility", "hidden");
 
         pays = {};
-        getPays("afg"); //questionnaire[avancement-1]
+        getPays(questionnaire[avancement-1]); //
         //Récupération contours du pays
 
                 
@@ -45,25 +45,19 @@ function getPays(iso3) {
     if (iso3 == "") {
         return;
     }
-    var dict;
     $.ajax({
         url: "getPays.php?iso="+iso3,
         type: 'GET',
-        async: false,
         cache: false,
         timeout: 30000,
-        error: function(){
-            return true;
-        },
-        success: function(msg){
-            pays = msg[0]
-            pays["contours"] = JSON.parse(pays["contours"].split("'").join('"'));
-            console.log(pays);
-            //dict = JSON.parse(msg);
-            updateQuestion(pays);
-        }
-    });
-    return dict;
+    }).done(function(msg) {
+        pays = msg;
+        console.log(msg)
+        pays["contours"] = JSON.parse(pays["contours"].split("'").join('"'));
+        console.log(pays);
+        //dict = JSON.parse(msg);
+        updateQuestion(pays);
+      });
 
 }
 
@@ -73,6 +67,7 @@ function updateQuestion(pays){
         $("#infoDescription").text(data["extract"])
         
     });
+    console.log(pays);
     $("#infoTitre").text(pays["nomPays"]);
     $("#drapeau").attr("src",pays["drapeau"]);
 
@@ -150,8 +145,22 @@ function distance(lat1, lon1, lat2, lon2) { //lien : https://www.geodatasource.c
 
 function distCountry(contours, lat, lon){
     var points = []
-    for (point of contours.coordinates[0]){
-        points.push(distance(lat, lon, point[1],point[0]));
+    if (contours.type == "Polygon"){
+        for (p of contours.coordinates){
+            for (point of p){
+                points.push(distance(lat, lon, point[1],point[0]));
+            }
+        }
+    }
+    else{
+        for (p of contours.coordinates){
+            for (pol of p){
+                for (point of pol){
+                    points.push(distance(lat, lon, point[1],point[0]));
+                    //console.log(point);
+                }
+            }
+        }
     }
     return (Math.min.apply(null, points));
 
@@ -201,13 +210,10 @@ function dragElement(elmnt) {  //source : https://www.w3schools.com/howto/howto_
 }
 
 $(document).ready(function(){
-    $.getJSON('https://raw.githubusercontent.com/leodechaumet/le-jeu-des-drapeaux/master/web/questionnaire.json', function(data) {
+    $.getJSON('genererQuestionnaire.php?size=20&continent=Europe', function(data) {
         questionnaire = data;
-        nombreDeQuestion = questionnaire.properties.size;
-        nombreDeQuestion = 3
-        nouvelleQuestion()
-        
-        
+        nombreDeQuestion = 20;
+        nouvelleQuestion();
     });
     
     // Association Evenement/Fonction handler
