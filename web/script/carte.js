@@ -1,17 +1,19 @@
-var questionnaire;
-var polygonePays=-1;
-var pointTotal = 0;
-var nombreDeQuestion = 3;
-var avancement = 0;
-var essai = 0;
-var succes = false;
-var pointQuestion = 0;
-var pays;
+var questionnaire;         // Contient une liste de code iso3 (pays du questionnaire)
+var polygonePays=-1;       // Objet qui represente le polygone du pays sur la carte
+var pointTotal = 0;        // Points de la partie
+var nombreDeQuestion = 0;  // Nombre de question du questionnaire
+var avancement = 0;        // Incrémenté de 1 à chaque nouvelle question
+var essai = 0;             // Nombre de clique sur la carte, remis à 0 à chaque nouvelle question
+var essaiMax= 10;          // Nombre de clique maximum autorisés
+var fini = false;          // Mis a "true" quand l'utilisateur clique sur le pays (ou que son nombre d'essai est écoulé)
+var pointQuestion = 0;     // Nombre de point gagner après avoir répondu juste
+var pays ={};              // Objet qui represente les infos sur le pays de la question courante.
+
 
 function nouvelleQuestion (){
     avancement += 1;
     essai = 0;
-    succes = false;
+    fini = false;
     pointQuestion = 0;
     updateProgressBar(avancement, nombreDeQuestion);
     
@@ -63,6 +65,7 @@ function getPays(iso3) {
 
 function updateQuestion(pays){
     //Page wikipedia dans le champs "info"
+    // !!! Faire ça en back-end?
     $.getJSON(pays["LienWiki"], function(data){
         $("#infoDescription").text(data["extract"])
         
@@ -95,31 +98,47 @@ function calculPoint (nbEssai){
 
 // Fonction qui réagit au clic sur la carte (e contiendra les données liées au clic)
 function onMapClick(e) {
-    if (!succes){
+    if (!fini){
         essai += 1
-        $("#message").text("Essai n°" + essai+ ", vous êtes à " + Math.floor(distCountry(pays["contours"], e.latlng.lat, e.latlng.lng))+ "km");
-        
+        if (essai>=essaiMax){
+            fini = true;
+            finQuestion(false);
+        }
+        else{
+            $("#message").text("Essai n°" + essai+ ", vous êtes à " + Math.floor(distCountry(pays["contours"], e.latlng.lat, e.latlng.lng))+ "km");
+        }
     }
     //$("#message").
 }
 
 // Fonction qui réagit au clic sur un pays (e contiendra les données liées au clic)
 function onCountryClick(e){
-    if (!succes){
+    if (!fini){
         essai +=1
-        polygonePays.setStyle({fillOpacity: 0.3, opacity:0.5}); //On affiche les contours
-        //map.setView(centrePays,5); //Zoom sur le pays
+        fini = true;
+        finQuestion(true);
+        //On active les boutons "question suivante" et "info sur le pays"
+
+    }
+}
+
+function finQuestion(succes){
+    polygonePays.setStyle({fillOpacity: 0.3, opacity:0.5}); //On affiche les contours
+    
+
+    if (succes){
         $("#message").text("Essai n°" + (essai) + " : Bravo, vous avez trouvé!");
         pointQuestion = calculPoint(essai);
         $("#incrementPoint").text(" + " + pointQuestion);
         pointTotal += pointQuestion;
-        
-        succes = true;
-        
-        //On active les boutons "question suivante" et "info sur le pays"
-        document.getElementById("boutonInfo").disabled = false;
-        document.getElementById("boutonSuivant").disabled = false;
     }
+    else{
+        $("#message").text("Dommage");
+        polygonePays.setStyle({color:"red"}); //On affiche les contours
+        map.setView([pays.lat, pays.lon]); //Zoom sur le pays
+    }
+    document.getElementById("boutonInfo").disabled = false;
+    document.getElementById("boutonSuivant").disabled = false;
 }
 
 function distance(lat1, lon1, lat2, lon2) { //lien : https://www.geodatasource.com/developers/javascript
@@ -143,12 +162,12 @@ function distance(lat1, lon1, lat2, lon2) { //lien : https://www.geodatasource.c
     }
 }
 
-function distCountry(contours, lat, lon){
+function getPoints(contours){
     var points = []
     if (contours.type == "Polygon"){
         for (p of contours.coordinates){
             for (point of p){
-                points.push(distance(lat, lon, point[1],point[0]));
+                points.push([point[1],point[0]]);
             }
         }
     }
@@ -156,57 +175,26 @@ function distCountry(contours, lat, lon){
         for (p of contours.coordinates){
             for (pol of p){
                 for (point of pol){
-                    points.push(distance(lat, lon, point[1],point[0]));
+                    points.push([point[1],point[0]]);
                     //console.log(point);
                 }
             }
         }
     }
-    return (Math.min.apply(null, points));
-
+    return points;
 }
 
-//Pas sur de garder ça
-dragElement(document.getElementById("infoPays"));
+function distCountry(contours, lat, lon){
+    distances = [];
+    for (point of getPoints(contours)){
+        distances.push(distance(lat, lon, point[0],point[1]));
+    }
 
-function dragElement(elmnt) {  //source : https://www.w3schools.com/howto/howto_js_draggable.asp
-    var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-        // if present, the header is where you move the DIV from:
-        document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-        // otherwise, move the DIV from anywhere inside the DIV:
-        elmnt.onmousedown = dragMouseDown;
-    }
+    return (Math.min.apply(null, distances));
+}
+
+function centrage(contours){
     
-    function dragMouseDown(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // get the mouse cursor position at startup:
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        // call a function whenever the cursor moves:
-        document.onmousemove = elementDrag;
-    }
-    
-    function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // calculate the new cursor position:
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // set the element's new position:
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-    }
-    function closeDragElement() {
-        // stop moving when mouse button is released:
-        document.onmouseup = null;
-        document.onmousemove = null;
-    }
 }
 
 $(document).ready(function(){

@@ -20,4 +20,20 @@ if (isset($_GET["iso"])){
     }else 
     echo "code pays invalide";
 }
+
+if (isset($_GET["all"])){
+    $sql="SELECT codeIso3, nom FROM pays";
+    $select=$con->prepare($sql);
+
+    $select->execute();
+    if($select->rowCount()>0)
+    {
+        $data=$select->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($data as $key => $value) {
+            $data[$key] = array_map('utf8_encode' ,$value);
+        }
+        
+        echo json_encode($data);
+    }
+}
 ?>
