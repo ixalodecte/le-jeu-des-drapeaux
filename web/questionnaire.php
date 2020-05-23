@@ -88,6 +88,9 @@
         $(".nav-link").click(function(e) {
             e.preventDefault();
             id = $(this).data("questionnaireid");
+
+            $('.nav li a.active').removeClass('active');
+            $(this).addClass('active');
             
             console.log(id);
             remplirTableauQuestion(id);            
