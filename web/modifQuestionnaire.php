@@ -2,9 +2,9 @@
 
 include_once("config.php");
 if (isset($_GET["id"])){
-    $id = $_GET["id"];
+    $id = intval($_GET["id"]);
 
-    //On verifie que le questionnaire existe avant d'ajouter une ligne...
+    //On verifie que le questionnaire existe avant de faire des opérations dessus
     $sql="SELECT * FROM questionnaire WHERE id= ?";
     $select=$con->prepare($sql);
     $select->execute(array($id));
@@ -18,10 +18,11 @@ if (isset($_GET["id"])){
             $insert->execute([$id,$insertQuestion]);
         }
         elseif (isset($_GET["deleteQuestion"])){
-            $deleteQuestion = $_GET["deleteQuestion"];
-            $sql="DELETE FROM question where id = ? and codeIso3=?)";
+            $insertQuestion = $_GET["deleteQuestion"];
+            $sql="DELETE FROM question where id = ? and codeIso3=?";
             $insert=$con->prepare($sql);
-            $insert->execute([$id,$deleteQuestion]);
+            $insert->execute([$id,$insertQuestion]);
+
         }
         elseif (isset($_GET["updateNom"])){
             $nom = $_GET["updateNom"];
@@ -30,9 +31,9 @@ if (isset($_GET["id"])){
             $update->execute([$id,$nom]);
         }
         elseif (isset($_GET["deleteQuestionnaire"])){
-            $sql="UPDATE questionnaire set nom=? WHERE id=?";
+            $sql="DELETE from questionnaire WHERE id=?";
             $update=$con->prepare($sql);
-            $update->execute([$id,$nom]);
+            $update->execute([$id]);
         }
 
     }
@@ -59,7 +60,7 @@ if($select->rowCount()>0)
     $data=$select->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $questionnaire) {
         echo "      <li class='nav-item'>\n";
-        echo "        <a class='nav-link' href='#' data-questionnaireId = '" .$questionnaire["id"]. "'>".$questionnaire["nom"]." <span class='badge badge-light'>".$questionnaire["taille"]."</span></a>\n";
+        echo "        <a class='nav-link' href='#' data-questionnaireId = '" .$questionnaire["id"]. "'data-questionnaireNom = '" .$questionnaire["nom"]. "'>".$questionnaire["nom"]." <span class='badge badge-light'>".$questionnaire["taille"]."</span></a>\n";
         echo "        </li>";
     }
 }
