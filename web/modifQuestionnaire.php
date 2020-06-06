@@ -10,27 +10,37 @@ if (isset($_GET["id"])){
     $select->execute(array($id));
     if($select->rowCount()>0)
     {
-        //elseif : une opération à la fois pour éviter les problèmes
         if (isset($_GET["insertQuestion"])){
             $insertQuestion = $_GET["insertQuestion"];
             $sql="INSERT into question (id,codeIso3) VALUES (?, ?)";
             $insert=$con->prepare($sql);
             $insert->execute([$id,$insertQuestion]);
         }
-        elseif (isset($_GET["deleteQuestion"])){
+        if (isset($_GET["deleteQuestion"])){
             $insertQuestion = $_GET["deleteQuestion"];
             $sql="DELETE FROM question where id = ? and codeIso3=?";
             $insert=$con->prepare($sql);
             $insert->execute([$id,$insertQuestion]);
-
         }
-        elseif (isset($_GET["updateNom"])){
+        if (isset($_GET["updateNom"])){
             $nom = $_GET["updateNom"];
             $sql="UPDATE questionnaire set nom=? WHERE id=?";
             $update=$con->prepare($sql);
-            $update->execute([$id,$nom]);
+            $update->execute([$nom,$id]);
         }
-        elseif (isset($_GET["deleteQuestionnaire"])){
+        if (isset($_GET["updateImage"])){
+            $image = $_GET["updateImage"];
+            $sql="UPDATE questionnaire set image=? WHERE id=?";
+            $update=$con->prepare($sql);
+            $update->execute([$image,$id]);
+        }
+        if (isset($_GET["updateDescription"])){
+            $description = $_GET["updateDescription"];
+            $sql="UPDATE questionnaire set description=? WHERE id=?";
+            $update=$con->prepare($sql);
+            $update->execute([$description,$id]);
+        }
+        if (isset($_GET["deleteQuestionnaire"])){
             $sql="DELETE from questionnaire WHERE id=?";
             $update=$con->prepare($sql);
             $update->execute([$id]);
@@ -50,7 +60,7 @@ elseif (isset($_GET["add"])){
 }
 
 
-$sql = "SELECT id,nom, (SELECT count(*) from question where question.id = questionnaire.id) as taille from questionnaire;";
+$sql = "SELECT id,nom, description, (SELECT count(*) from question where question.id = questionnaire.id) as taille from questionnaire;";
 
 $select=$con->prepare($sql);
 
@@ -60,7 +70,7 @@ if($select->rowCount()>0)
     $data=$select->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $questionnaire) {
         echo "      <li class='nav-item'>\n";
-        echo "        <a class='nav-link' href='#' data-questionnaireId = '" .$questionnaire["id"]. "'data-questionnaireNom = '" .$questionnaire["nom"]. "'>".$questionnaire["nom"]." <span class='badge badge-light'>".$questionnaire["taille"]."</span></a>\n";
+        echo "        <a class='nav-link' href='#' data-questionnaireId = '" .$questionnaire["id"]. "' data-questionnaireNom = '" .$questionnaire["nom"]. "' data-questionnaireDescription = '" .$questionnaire["description"]."'>".$questionnaire["nom"]." <span class='badge badge-light'>".$questionnaire["taille"]."</span></a>\n";
         echo "        </li>";
     }
 }

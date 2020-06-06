@@ -1,0 +1,32 @@
+.container
+{
+	border-bottom:1px solid white;
+	height:30vh;
+	width:700px;
+}
+.form-div
+{
+	margin:2% auto;
+	border-top:15px ;
+
+}
+.form-div label{
+font-size:1em;
+font-weight:30%;
+
+}
+.form-div input[type="text"]:focus,
+.form-div input[type="submit"]:focus,
+.form-div input[type="email"]:focus,
+.form-div input[type="Repeat Password"]:focus,
+.form-div input[type="password"]:focus
+
+{
+	margin:1%;
+	font-size:1em;
+	font-weight:30%;
+
+}
+.form-div p{
+	font-size:0.8em;
+}

@@ -8,6 +8,8 @@ var essaiMax= 10;          // Nombre de clique maximum autorisés
 var fini = false;          // Mis a "true" quand l'utilisateur clique sur le pays (ou que son nombre d'essai est écoulé)
 var pointQuestion = 0;     // Nombre de point gagner après avoir répondu juste
 var pays ={};              // Objet qui represente les infos sur le pays de la question courante.
+var id = -1;
+var continent = "";
 
 
 function nouvelleQuestion (){
@@ -37,7 +39,7 @@ function nouvelleQuestion (){
         document.getElementById("boutonSuivant").disabled = true;
         
     }
-    else{
+    if (avancement == nombreDeQuestion){
         fin();
     }
 }
@@ -82,9 +84,14 @@ function updateQuestion(pays){
 
 
 function fin(){
-    $("#message").text("Questionnaire fini");
-    $("#incrementPoint").text(" ");
-    $("#compteurPoint").text(pointTotal);
+    $("#boutonSuivant").text("finir");
+    if (id != -1){
+        $("#boutonSuivant").attr("onclick", "location.href='resultat.php?id=" + id + "&points=" + pointTotal + "'");
+    }
+    else{
+        $("#boutonSuivant").attr("onclick", "location.href='resultat.php?continent=" + continent + "&size=" + nombreDeQuestion +"&points=" + pointTotal + "'");
+    }
+
 }
 
 function updateProgressBar (avancement, nombreDeQuestion){
@@ -196,17 +203,3 @@ function distCountry(contours, lat, lon){
 function centrage(contours){
     
 }
-
-$(document).ready(function(){
-    $.getJSON('genererQuestionnaire.php?size=20&continent=Europe', function(data) {
-        questionnaire = data;
-        nombreDeQuestion = 20;
-        nouvelleQuestion();
-    });
-    
-    // Association Evenement/Fonction handler
-    map.on('click', onMapClick);
-    $("#boutonSuivant").click(nouvelleQuestion);
-    
-});
-
