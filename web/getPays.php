@@ -13,7 +13,7 @@ if (isset($_GET["iso"])){
     if($select->rowCount()>0)
     {
         $data=$select->fetch(PDO::FETCH_ASSOC);
-        $data["drapeau"] = "images/drapeaux/$iso.svg";
+        $data["drapeau"] = "/images/drapeaux/$iso.svg";
         $data["lienApiWiki"] = "https://fr.wikipedia.org/api/rest_v1/page/summary/". $data["LienWiki"];
         $data["LienWiki"] = "https://fr.wikipedia.org/wiki/". $data["LienWiki"];
         $data = array_map('utf8_encode' ,$data);

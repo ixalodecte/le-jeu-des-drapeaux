@@ -4,108 +4,110 @@ var pointTotal = 0;        // Points de la partie
 var nombreDeQuestion = 0;  // Nombre de question du questionnaire
 var avancement = 0;        // Incrémenté de 1 à chaque nouvelle question
 var essai = 0;             // Nombre de clique sur la carte, remis à 0 à chaque nouvelle question
-var essaiMax= 10;          // Nombre de clique maximum autorisés
+var essaiMax= 5;           // Nombre de clique maximum autorisés
 var fini = false;          // Mis a "true" quand l'utilisateur clique sur le pays (ou que son nombre d'essai est écoulé)
 var pointQuestion = 0;     // Nombre de point gagner après avoir répondu juste
 var pays ={};              // Objet qui represente les infos sur le pays de la question courante.
 var id = -1;
 var continent = "";
-var questionnaireFini = false;
 
-
+//Appelée à chaque fois que l'utilisateur clique sur le bouton suivant
 function nouvelleQuestion (){
     avancement += 1;
     essai = 0;
     fini = false;
     pointQuestion = 0;
     updateProgressBar(avancement, nombreDeQuestion);
-    
-    
-    if (avancement>1) {
-        map.removeLayer(polygonePays);
+
+    if (avancement>1) { //Si c'est la première question il n'y a pas encore de polygon sur la carte
+        map.removeLayer(polygonePays); // Retire les précedent contours
     }
-    if (avancement <= nombreDeQuestion){
 
-        $("#message").text("_");
-        $("#incrementPoint").text(" ");
-        $("#compteurPoint").text(pointTotal);
-        $("#infoPays").css("visibility", "hidden");
+    $("#message").text(" ");
+    $("#incrementPoint").text(" ");
+    $("#compteurPoint").text(pointTotal);
 
-        pays = {};
-        getPays(questionnaire[avancement-1]); //
-        //Récupération contours du pays
+    pays = {};
+    getPays(questionnaire[avancement-1]);
 
-                
-        document.getElementById("boutonInfo").disabled = true;
-        document.getElementById("boutonSuivant").disabled = true;
-        
-    }
+    // Désactivation des boutons info et suivant
+    document.getElementById("boutonInfo").disabled = true;
+    document.getElementById("boutonSuivant").disabled = true;
+
     if (avancement == nombreDeQuestion){
         derniereQuestion();
     }
 }
 
+//Récupere les infos sur le pays correspondant au code iso passé en paramètre
 function getPays(iso3) {
     var xhttp;
     if (iso3 == "") {
         return;
     }
     $.ajax({
-        url: "getPays.php?iso="+iso3,
+        url: "/getPays.php",
+        data: {iso: iso3},
         type: 'GET',
         cache: false,
         timeout: 30000,
     }).done(function(msg) {
         pays = msg;
-        console.log(msg)
         pays["contours"] = JSON.parse(pays["contours"].split("'").join('"'));
-        console.log(pays);
         //dict = JSON.parse(msg);
         updateQuestion(pays);
       });
 
 }
 
+//Change la page avec les infos du pays passé en paramètre (appelée après getPays)
 function updateQuestion(pays){
-    //Page wikipedia dans le champs "info"
-    // !!! Faire ça en back-end?
     $("#modalInfoTitre").text(pays["nom"]);
+
+    // Récupère les informations sur l'api wikipedia
     $.getJSON(pays["lienApiWiki"], function(data){
         $("#infoDescription").text(data["extract"] + " (source : wikipédia)")
-        
     });
+
     $("#lienWikipedia").attr("href", pays["LienWiki"]);
-    console.log(pays);
     $("#infoTitre").text(pays["nomPays"]);
+
+    //Mise en place du drapeau
     $("#drapeau").attr("src",pays["drapeau"]);
 
+    // Mise en place du polygone : invisible tant que l'utilisateur n'a pas cliquer dessus
     polygonePays = L.geoJSON(pays["contours"], {style:{color:"green", fillOpacity: 0, opacity:0, cursor:"crosshair"}}).addTo(map); //On place le plolygone, invisible pour l'instant
-    polygonePays.on("click", onCountryClick)
-    $(".leaflet-interactive").attr("style","cursor:crosshair"); // On change le curseur pour qu'il soit pareil que la map. (change de place ?)
+    // Event click sur le polygon
+    polygonePays.on("click", onCountryClick);
+    // On change le curseur pour qu'il soit pareil que la map.
+    $(".leaflet-interactive").attr("style","cursor:crosshair");
 
 }
 
-
+//Appelé si on est à la derniere question
 function derniereQuestion(){
     $("#boutonSuivant").text("finir");
     $("#boutonSuivant").click(fin);
-    questionnaireFini = true;
 }
 
+//Avance la bar de progression dans le questionnaire, tout en haut
 function updateProgressBar (avancement, nombreDeQuestion){
     $(".progress-bar").css("width", (100/nombreDeQuestion)*(avancement) + "%");
 }
 
+//Calcule les points gagnés en fonction du nombre d'essai
 function calculPoint (nbEssai){
     return Math.floor(1000/nbEssai);
 }
+
+//Appelée quand l'utilisateur clique sur le bouton fin (à la fin du questionnaire)
 function fin(){
     $('#modalFinTitre').text("Bravo! Vous avez gagné " + pointTotal + " points.");
     if (id != -1){
-        $("#modalFinRejouer").attr("href", "carte.php?id=" + id);
+        $("#modalFinRejouer").attr("href", "/jouer/carte.php?id=" + id);
     }
     else{
-        $("#modalFinRejouer").attr("href","carte.php?continent=" + continent + "&size=" + nombreDeQuestion);
+        $("#modalFinRejouer").attr("href","/jouer/carte.php?continent=" + continent + "&size=" + nombreDeQuestion);
     }
     $('#modalFin').modal('show')
 }
@@ -137,6 +139,9 @@ function onCountryClick(e){
     }
 }
 
+// Appelé à chaque fin de question
+// Si succes = false : colore le pays en rouge et zoom dessus
+// Sinon : colore en vert, ajoute des points
 function finQuestion(succes){
     polygonePays.setStyle({fillOpacity: 0.3, opacity:0.5}); //On affiche les contours
     
@@ -151,14 +156,16 @@ function finQuestion(succes){
     else{
         $("#message").text("Dommage");
         polygonePays.setStyle({color:"red"}); //On affiche les contours
-        map.setView([pays.lat, pays.lon]); //Zoom sur le pays
+        map.setView([pays.lat, pays.lon], 5); //Zoom sur le pays
     }
 
     document.getElementById("boutonInfo").disabled = false;
     document.getElementById("boutonSuivant").disabled = false;
 }
 
-function distance(lat1, lon1, lat2, lon2) { //lien : https://www.geodatasource.com/developers/javascript
+// calcule la distance entre deux points du globe
+// source : https://www.geodatasource.com/developers/javascript
+function distance(lat1, lon1, lat2, lon2) {
     if ((lat1 == lat2) && (lon1 == lon2)) {
         return 0;
     }
@@ -179,6 +186,7 @@ function distance(lat1, lon1, lat2, lon2) { //lien : https://www.geodatasource.c
     }
 }
 
+// Renvoie tous les points du polygon ou multi-polygon passé en parametre (format geojson)
 function getPoints(contours){
     var points = []
     if (contours.type == "Polygon"){
@@ -201,6 +209,9 @@ function getPoints(contours){
     return points;
 }
 
+// Renvoie la distance d'un point (lat, lon) par rapport à la distance avec un polygon (contours). Pour cela:
+//   Calcule les distances entre tous les points du polygon et le deuxième point
+//   Renvoie la plus petite distance
 function distCountry(contours, lat, lon){
     distances = [];
     for (point of getPoints(contours)){
@@ -208,8 +219,4 @@ function distCountry(contours, lat, lon){
     }
 
     return (Math.min.apply(null, distances));
-}
-
-function centrage(contours){
-    
 }
