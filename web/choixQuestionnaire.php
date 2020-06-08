@@ -29,6 +29,24 @@
 
     <body>
         <div class="container">
+            <h2>Generer un questionnaire aléatoirement</h2>
+            <form action="carte.php" method="get" class="form-inline">
+                <label for="selectContinent" class ="mr-sm-2">Continent : </label>
+                <select name="continent" class="custom-select mb-2 mr-sm-2" id="selectContinent">
+                    <option value="Europe" selected>Europe</option>
+                    <option value="Afrique">Afrique</option>
+                    <option value="Asie">Asie</option>
+                    <option value="Amerique">Amerique</option>
+                    <option value="Océanie">Océanie</option>
+                    <option value="Antarctique">Antarctique</option>
+                </select>
+                <label class="mr-sm-2" for="taille">Taille du questionnaire : </label>
+                <input class="mr-sm-2 mb-2" value=1 name="size" type="number" id="replyNumber" min="1" step="1" data-bind="value:replyNumber" />
+                <input class = "btn btn-primary mr-sm-2 mb-2" type="submit" value="Jouer">
+
+
+            </form>
+            <hr class="mb-3">
             <h2>Choisissez un questionnaire</h2>
             <div class="card-columns">
                 <?php

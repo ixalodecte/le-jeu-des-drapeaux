@@ -4,24 +4,21 @@
         <title>Leaflet.js avec couche Stamen Watercolor</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-        
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-        
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+        
+
+        
+
         
         <!-- Popper JS -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        
+                <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
-        
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
         <style>
             
             p {
@@ -52,33 +49,58 @@
             <!-- Boutons pour passer à la question suivante + infos sur le pays -->
             <div id = "boutonInfoSuivant" class="col-4">
                 <p id = "message">_</p>
-                <button id = "boutonInfo" type ="button" class="btn btn-primary" data-toggle="modal" data-target="#modalInfo" disabled>info</button>
+                <button id = "boutonInfo" type ="button" class="btn btn-info mr-3" data-toggle="modal" data-target="#modalInfo" disabled>info</button>
                 <button id = "boutonSuivant" type ="button" class="btn btn-primary" disabled>suivant</button>
                         <!-- The Modal -->
-        <div class="modal" id="modalInfo">
-            <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal fade" id="modalInfo">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="infoTitre">Pays</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 id="modalInfoTitre" class="infoTitre">Pays</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <p id="infoDescription" style="font-size: medium;">Some example text some example text. John Doe is an architect and engineer</p>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <a id="lienWikipedia" href="#" target="_blank" class="btn btn-info">wikipedia</a>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <p id="infoDescription" style="font-size: medium;">Some example text some example text. John Doe is an architect and engineer</p>
-                </div>
+                <div class="modal fade" id="modalFin">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info">wikipedia</button>
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                </div>
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 id="modalFinTitre" class="infoTitre">Bravo, vous avez gagné points</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
 
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <p id="modalFinDescription" style="font-size: medium;"></p>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <a id="lienWikipedia" href="choixQuestionnaire.php" class="btn btn-info">Choisir un autre questionnaire</a>
+                            <a class="btn btn-info" href="#" id="modalFinRejouer">Rejouer</a>
+                        </div>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
             </div>
             
             <!-- Drapeau du pays à trouver -->
@@ -135,7 +157,7 @@
                             
                         }
                         elseif (isset($_GET["size"]) and isset($_GET["continent"])){
-                            echo "continent=" . $_GET["continent"] . "\n";
+                            echo "continent='" . $_GET["continent"] . "'\n";
                             $lienQuestionnaire = "genererQuestionnaire.php?size=" . $_GET["size"] . "&continent=" . $_GET["continent"];
                         }
                         else {

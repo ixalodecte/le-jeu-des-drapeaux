@@ -22,24 +22,7 @@ if (isset($_GET["id"])){
             $insert=$con->prepare($sql);
             $insert->execute([$id,$insertQuestion]);
         }
-        if (isset($_GET["updateNom"])){
-            $nom = $_GET["updateNom"];
-            $sql="UPDATE questionnaire set nom=? WHERE id=?";
-            $update=$con->prepare($sql);
-            $update->execute([$nom,$id]);
-        }
-        if (isset($_GET["updateImage"])){
-            $image = $_GET["updateImage"];
-            $sql="UPDATE questionnaire set image=? WHERE id=?";
-            $update=$con->prepare($sql);
-            $update->execute([$image,$id]);
-        }
-        if (isset($_GET["updateDescription"])){
-            $description = $_GET["updateDescription"];
-            $sql="UPDATE questionnaire set description=? WHERE id=?";
-            $update=$con->prepare($sql);
-            $update->execute([$description,$id]);
-        }
+
         if (isset($_GET["deleteQuestionnaire"])){
             $sql="DELETE from questionnaire WHERE id=?";
             $update=$con->prepare($sql);

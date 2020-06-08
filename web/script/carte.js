@@ -10,6 +10,7 @@ var pointQuestion = 0;     // Nombre de point gagner après avoir répondu juste
 var pays ={};              // Objet qui represente les infos sur le pays de la question courante.
 var id = -1;
 var continent = "";
+var questionnaireFini = false;
 
 
 function nouvelleQuestion (){
@@ -40,7 +41,7 @@ function nouvelleQuestion (){
         
     }
     if (avancement == nombreDeQuestion){
-        fin();
+        derniereQuestion();
     }
 }
 
@@ -68,10 +69,12 @@ function getPays(iso3) {
 function updateQuestion(pays){
     //Page wikipedia dans le champs "info"
     // !!! Faire ça en back-end?
-    $.getJSON(pays["LienWiki"], function(data){
-        $("#infoDescription").text(data["extract"])
+    $("#modalInfoTitre").text(pays["nom"]);
+    $.getJSON(pays["lienApiWiki"], function(data){
+        $("#infoDescription").text(data["extract"] + " (source : wikipédia)")
         
     });
+    $("#lienWikipedia").attr("href", pays["LienWiki"]);
     console.log(pays);
     $("#infoTitre").text(pays["nomPays"]);
     $("#drapeau").attr("src",pays["drapeau"]);
@@ -83,23 +86,28 @@ function updateQuestion(pays){
 }
 
 
-function fin(){
+function derniereQuestion(){
     $("#boutonSuivant").text("finir");
-    if (id != -1){
-        $("#boutonSuivant").attr("onclick", "location.href='resultat.php?id=" + id + "&points=" + pointTotal + "'");
-    }
-    else{
-        $("#boutonSuivant").attr("onclick", "location.href='resultat.php?continent=" + continent + "&size=" + nombreDeQuestion +"&points=" + pointTotal + "'");
-    }
-
+    $("#boutonSuivant").click(fin);
+    questionnaireFini = true;
 }
 
 function updateProgressBar (avancement, nombreDeQuestion){
-    $(".progress-bar").css("width", (100/nombreDeQuestion)*(avancement-1) + "%");
+    $(".progress-bar").css("width", (100/nombreDeQuestion)*(avancement) + "%");
 }
 
 function calculPoint (nbEssai){
     return Math.floor(1000/nbEssai);
+}
+function fin(){
+    $('#modalFinTitre').text("Bravo! Vous avez gagné " + pointTotal + " points.");
+    if (id != -1){
+        $("#modalFinRejouer").attr("href", "carte.php?id=" + id);
+    }
+    else{
+        $("#modalFinRejouer").attr("href","carte.php?continent=" + continent + "&size=" + nombreDeQuestion);
+    }
+    $('#modalFin').modal('show')
 }
 
 
@@ -134,6 +142,7 @@ function finQuestion(succes){
     
 
     if (succes){
+        console.log("okkk");
         $("#message").text("Essai n°" + (essai) + " : Bravo, vous avez trouvé!");
         pointQuestion = calculPoint(essai);
         $("#incrementPoint").text(" + " + pointQuestion);
@@ -144,6 +153,7 @@ function finQuestion(succes){
         polygonePays.setStyle({color:"red"}); //On affiche les contours
         map.setView([pays.lat, pays.lon]); //Zoom sur le pays
     }
+
     document.getElementById("boutonInfo").disabled = false;
     document.getElementById("boutonSuivant").disabled = false;
 }
