@@ -149,32 +149,39 @@
                 L.Util.formatNum(latlng.lng, precision) + ',' +
                 L.Util.formatNum(latlng.lat, precision) + ']';
             }
+            <?php
+                if (isset($_GET["id"])){
+                    $id = $_GET["id"];
+                    if (ctype_digit($id)){
+                        echo "id=" . $id . "\n";
+                        $lienQuestionnaire = "/questionnaire/getQuestionnaire.php?id=" . $id;
+                    }
+                }
+                elseif (isset($_GET["size"]) and isset($_GET["continent"])){
+                    $size = $_GET["size"];
+                    $continent = $_GET["continent"];
+                    //Verification des paramètres par sécurité
+                    if (ctype_digit($size) and in_array($continent, ["Europe", "Afrique", "Asie", "Océanie", "Antarctique", "Amerique"], true)){
+                        echo "continent='" . $continent . "'\n";
+                        $lienQuestionnaire = "/questionnaire/genererQuestionnaire.php?size=" . $size . "&continent=" . $continent;
+
+                    }
+                }
+                else {
+                    echo "coucou";
+                }
+                echo "questionnaire = " . file_get_contents('http://127.0.0.1' . $lienQuestionnaire);
+            ?>
             
             $(document).ready(function(){
-                <?php
-                    if (isset($_GET["id"])){
-                        echo "id=" . $_GET["id"] . "\n";
-                        $lienQuestionnaire = "/questionnaire/getQuestionnaire.php?id=" . $_GET["id"];
-                        
-                    }
-                    elseif (isset($_GET["size"]) and isset($_GET["continent"])){
-                        echo "continent='" . $_GET["continent"] . "'\n";
-                        $lienQuestionnaire = "/questionnaire/genererQuestionnaire.php?size=" . $_GET["size"] . "&continent=" . $_GET["continent"];
-                    }
-                    else {
-                        echo "coucou";
-                    }
-                    echo "$.getJSON('$lienQuestionnaire', function(data) {\n";
-                ?>questionnaire = data;
-                    nombreDeQuestion = questionnaire.length;
-                    nouvelleQuestion();
-                });
-                
-                // Association Evenement/Fonction handler
+                nombreDeQuestion = questionnaire.length;
+                nouvelleQuestion();
                 map.on('click', onMapClick);
+                // Association Evenement/Fonction handler
                 $("#boutonSuivant").click(nouvelleQuestion);
-                
+
             });
+                
         </script>
 
         <script src="/script/carte.js"></script>

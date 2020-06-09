@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE abiword PUBLIC "-//ABISOURCE//DTD AWML 1.0 Strict//EN" "http://www.abisource.com/awml.dtd">
+<abiword template="false" xmlns:ct="http://www.abisource.com/changetracking.dtd" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:math="http://www.w3.org/1998/Math/MathML" xid-max="253" xmlns:dc="http://purl.org/dc/elements/1.1/" fileformat="1.1" xmlns:svg="http://www.w3.org/2000/svg" xmlns:awml="http://www.abisource.com/awml.dtd" xmlns="http://www.abisource.com/awml.dtd" xmlns:xlink="http://www.w3.org/1999/xlink" version="3.0.2" xml:space="preserve" props="dom-dir:ltr; document-footnote-restart-section:0; document-endnote-type:numeric; document-endnote-place-enddoc:1; document-endnote-initial:1; lang:fr-FR; document-endnote-restart-section:0; document-footnote-restart-page:0; document-footnote-type:numeric; document-footnote-initial:1; document-endnote-place-endsection:0">
+<!-- ======================================================================== -->
+<!-- This file is an AbiWord document.                                        -->
+<!-- AbiWord is a free, Open Source word processor.                           -->
+<!-- More information about AbiWord is available at http://www.abisource.com/ -->
+<!-- You should not edit this file by hand.                                   -->
+<!-- ======================================================================== -->
+
+<metadata>
+<m key="abiword.date_last_changed">Tue Jun  9 16:41:45 2020
+</m>
+<m key="abiword.generator">AbiWord</m>
+<m key="dc.date">2020-06-07T22:22:15.275008811</m>
+<m key="dc.format">application/x-abiword</m>
+<m key="meta:editing-cycles">17</m>
+<m key="meta:editing-duration">PT5H18M35S</m>
+</metadata>
+<rdf>
+<t  s="styles.xml"  p="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"  objecttype="1"  xsdtype=""  >http://docs.oasis-open.org/ns/office/1.2/meta/odf#StylesFile</t>
+<t  s="content.xml"  p="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"  objecttype="1"  xsdtype=""  >http://docs.oasis-open.org/ns/office/1.2/meta/odf#ContentFile</t>
+<t  s="manifest.rdf"  p="http://docs.oasis-open.org/ns/office/1.2/meta/pkg#hasPart"  objecttype="1"  xsdtype=""  >styles.xml</t>
+<t  s="manifest.rdf"  p="http://docs.oasis-open.org/ns/office/1.2/meta/pkg#hasPart"  objecttype="1"  xsdtype=""  >content.xml</t>
+<t  s="manifest.rdf"  p="http://www.w3.org/1999/02/22-rdf-syntax-ns#type"  objecttype="1"  xsdtype=""  >http://docs.oasis-open.org/ns/office/1.2/meta/pkg#Document</t>
+</rdf>
+<history version="5" edit-time="17088" last-saved="1591713705" uid="0978acbc-aa38-11ea-8d7f-a49d23166c57">
+<version id="5" started="1591698163" uid="577aeee4-aa5f-11ea-8d7f-a49d23166c57" auto="0" top-xid="207"/>
+</history>
+<styles>
+<s type="P" name="Normal" props="widows:2; font-size:12pt; dom-dir:ltr; lang:fr-FR; default-tab-interval:1.251cm; orphans:2; font-family:Liberation Serif"/>
+<s type="P" name="Caption" basedon="Normal" followedby="Caption" props="margin-top:0.212cm; font-size:12pt; margin-bottom:0.212cm; font-style:italic"/>
+<s type="P" name="Heading" basedon="Normal" followedby="Text body" props="margin-top:0.423cm; keep-with-next:yes; margin-bottom:0.212cm; font-family:Liberation Sans; font-size:14pt"/>
+<s type="P" name="Text body" basedon="Normal" followedby="Text body" props="margin-top:0cm; line-height:1.150000; margin-bottom:0.247cm"/>
+</styles>
+<pagesize pagetype="A4" orientation="portrait" width="210.000000" height="297.000000" units="mm" page-scale="1.000000"/>
+<section xid="27" props="page-margin-right:2cm; page-width:21.001cm; page-margin-left:2cm; page-orientation:portrait; page-margin-bottom:2cm; page-margin-top:2cm; page-height:29.7cm">
+<p style="Normal" xid="28">Rapport web</p>
+<p style="Normal" xid="29"><c></c></p>
+<p style="Normal" xid="30">sommaire</p>
+<p style="Normal" xid="31"><c></c></p>
+<p style="Normal" xid="32">I introduction</p>
+<p style="Normal" xid="33">II Coté utilisateur</p>
+<p style="Normal" xid="34">   a) Les questionnaires</p>
+<p style="Normal" xid="35">      * Les types de questionnaires</p>
+<p style="Normal" xid="36">      * Formats des questions (pays)</p>
+<p style="Normal" xid="37">      * utilisateur connecté : peut jouer à tout</p>
+<p style="Normal" xid="38">      * non connecté : seulement 2 questionnaire</p>
+<p style="Normal" xid="39"><c></c></p>
+<p style="Normal" xid="40">   b) Le jeu</p>
+<p style="Normal" xid="41">       * Fonctionnement du jeu</p>
+<p style="Normal" xid="42">       * Calcul des points</p>
+<p style="Normal" xid="43">       * Info wiki sur le pays</p>
+<p style="Normal" xid="44">       * affichage des contours</p>
+<p style="Normal" xid="45">       * etc</p>
+<p style="Normal" xid="46"><c></c></p>
+<p style="Normal" xid="47">   c) Gestion des questionnaire pour l’admin</p>
+<p style="Normal" xid="48">       * peut ajouter, supprimer, modifier des questionnaires</p>
+<p style="Normal" xid="49">       * peut ajouter, supprimer des pays sur un questionnaire</p>
+<p style="Normal" xid="50">       * peut upload des images pour illustrer un questionnaire</p>
+<p style="Normal" xid="51"><c></c></p>
+<p style="Normal" xid="52">III Coté code</p>
+<p style="Normal" xid="53">   a) Arborescence du projet</p>
+<p style="Normal" xid="54">   b) Description des questionnaires</p>
+<p style="Normal" xid="55">       * front</p>
+<p style="Normal" xid="56">       * back</p>
+<p style="Normal" xid="57">       * structure : liste d’iso</p>
+<p style="Normal" xid="58"> </p>
+<p style="Normal" xid="59">   c) Description jeu</p>
+<p style="Normal" xid="60">       * front + back</p>
+<p style="Normal" xid="61">       * ajax</p>
+<p style="Normal" xid="62">       </p>
+<p style="Normal" xid="63">   d) Gestion questionnaires</p>
+<p style="Normal" xid="64">       * ajax</p>
+<p style="Normal" xid="65">       * form</p>
+<p style="Normal" xid="66">       * creation dataset de pays avec php pour auto-completion</p>
+<p style="Normal" xid="67"><c></c></p>
+<p style="Normal" xid="68">IV Base de donnée</p>
+<p style="Normal" xid="69">   a) Questionnaire + question + pays</p>
+<p style="Normal" xid="70">       * Schéma relationnel</p>
+<p style="Normal" xid="71">       * Description des tables</p>
+<p style="Normal" xid="72"><c></c></p>
+<p style="Normal" xid="73">   b) Utilisateur</p>
+<p style="Normal" xid="74">        * Hashage</p>
+<p style="Normal" xid="75">        * User admin</p>
+<p style="Normal" xid="76"><c></c></p>
+<p style="Normal" xid="77">V Sécurité</p>
+<p style="Normal" xid="78"><c></c></p>
+<p style="Normal" xid="79"><c></c></p>
+<p style="Normal" xid="80" props="font-weight:bold">Présentation du jeu</p>
+<p style="Normal" xid="81"><c></c></p>
+<p style="Normal" xid="82">Les questionnaire</p>
+<p style="Normal" xid="83">page associé : questionnaire.php</p>
+<p style="Normal" xid="84"></p>
+<p style="Normal" xid="85">L’utilisateur peut choisir un questionnaire parmi ceux déjà composés. Ces questionnaires sont fixes, ils posséderont toujours les mêmes questions et dans le même ordre. On peut aussi choisir de générer un questionnaire aléatoirement, en choisissant le continent et le nombre de question dans le questionnaire. Cela permet à l’utilisateur de pouvoir jouer à un nombre de questionnaire illimité. </p>
+<p style="Normal" xid="86">Chaque questionnaire possède une liste de pays. Certains pays peuvent apparaître plusieurs fois dans un questionnaire généré par l’utilisateur.</p>
+<p style="Normal" xid="87">Un joueur connecté peut jouer à tous les questionnaires disponibles contrairement au joueur non connecté qui, lui, ne peut choisir que deux questionnaire et ne peut pas jouer aux questionnaire générés aléatoirement.</p>
+<p style="Normal" xid="88"><c></c></p>
+<p style="Normal" xid="89">Déroulement du jeu</p>
+<p style="Normal" xid="90">page associé : carte.php</p>
+<p style="Normal" xid="91">Lorsque l’utilisateur clique sur jouer, il est redirigé vers la page de jeu. Un drapeaux est alors affiché en haut à droite. Le but du jeu est alors de cliquer sur la carte sur le pays représenté par le drapeaux. Si le joueur clique sur le pays, alors les contours du pays sont affichés en vert. Le joueur à le droit à 5 essais. Si le pays n’est pas trouvé, les contours sont affiché en rouge et on zoome sur le pays. Après le dévoilement du pays, le joueur peut lire des informations sur le pays provenant de wikipedia (bouton info), et/ou passer à la question suivante.</p>
+<p style="Normal" xid="92">Pour chaque question, le joueur gagne 1000 points divisés par le nombre d’essais, ou 0 si le joueur à épuisé toutes ces chances. </p>
+<p style="Normal" xid="93">Une fois le questionnaire fini, les points du joueurs sont afficher. Le joueur a alors le choix entre rejouer au même type de questionnaire, ou bien choisir un autre questionnaire.</p>
+<p style="Normal" xid="94"><c></c></p>
+<p style="Normal" xid="95">Gestion des questionnaire</p>
+<p style="Normal" xid="96">page associé : questionnaire.php</p>
+<p style="Normal" xid="97"></p>
+<p style="Normal" xid="98">Un utilisateur spécial, l’administrateur, peut :</p>
+<p style="Normal" xid="99">- Ajouter des questionnaires,</p>
+<p style="Normal" xid="100">- Supprimer des questionnaires,</p>
+<p style="Normal" xid="101">- Modifier des questionnaires déjà existant, en cliquant sur le bouton modifier après avoir sélectionner un questionnaire. L’administrateur peut changer son nom, ajouter une description et/ou une illustration au questionnaire en téléversant une photo sur le serveur.</p>
+<p style="Normal" xid="102">- Ajouter des questions à un questionnaire, en sélectionnant un questionnaire et en ajoutant des pays.</p>
+<p style="Normal" xid="103"><c></c></p>
+<p style="Normal" xid="104">Les comptes utilisateur</p>
+<p style="Normal" xid="105">page associé :</p>
+<p style="Normal" xid="106">login.php</p>
+<p style="Normal" xid="107">logout.php</p>
+<p style="Normal" xid="108">register.php</p>
+<p style="Normal" xid="109">Le joueur peut s’inscrire à l’application web en allant sur la page register.php. Il lui est alors demandé un mail et un mot de passe.</p>
+<p style="Normal" xid="110">Une fois inscrit, l’utilisateur peut ce connécter en allant sur la page login.php, et se déconnecté en allant sur la page logout.php</p>
+<p style="Normal" xid="111"><c></c></p>
+<p style="Normal" xid="112">III code</p>
+<p style="Normal" xid="113"><c></c></p>
+<p style="Normal" xid="114"><c></c></p>
+<p style="Normal" xid="115"><c></c></p>
+<p style="Normal" xid="116"><c></c></p>
+<p style="Normal" xid="117"><c></c></p>
+<p style="Normal" xid="118"><c></c></p>
+<p style="Normal" xid="119"><c></c></p>
+<p style="Normal" xid="120"><c></c></p>
+<p style="Normal" xid="121"><c></c></p>
+<p style="Normal" xid="122"><c></c></p>
+<p style="Normal" xid="123"><c></c></p>
+<p style="Normal" xid="124"><c></c></p>
+<p style="Normal" xid="125"><c></c></p>
+<p style="Normal" xid="126" props="text-decoration:underline; font-family:Liberation Serif; font-weight:bold">Arborescence du projet</p>
+<p style="Normal" xid="127" props="font-family:Hack Nerd Font"><c></c></p>
+<p style="Normal" xid="128" props="font-family:Hack Nerd Font">  .</p>
+<p style="Normal" xid="129" props="font-family:Hack Nerd Font">├──   config.php</p>
+<p style="Normal" xid="130" props="font-family:Hack Nerd Font">├──   connect.php</p>
+<p style="Normal" xid="131" props="font-family:Hack Nerd Font">├──   css</p>
+<p style="Normal" xid="132" props="font-family:Hack Nerd Font">│  └──   style.css</p>
+<p style="Normal" xid="133" props="font-family:Hack Nerd Font">├──   getPays.php</p>
+<p style="Normal" xid="134" props="font-family:Hack Nerd Font">├──   images</p>
+<p style="Normal" xid="135" props="font-family:Hack Nerd Font">│  ├──   drapeaux</p>
+<p style="Normal" xid="136" props="font-family:Hack Nerd Font">│  │  ├──   abw.svg</p>
+<p style="Normal" xid="137" props="font-family:Hack Nerd Font">│  │  ├──   afg.svg</p>
+<p style="Normal" xid="138" props="font-family:Hack Nerd Font">│  │  ├──   zmb.svg</p>
+<p style="Normal" xid="139" props="font-family:Hack Nerd Font">│  │  └──   … </p>
+<p style="Normal" xid="140" props="font-family:Hack Nerd Font">│  └──   questionnaire</p>
+<p style="Normal" xid="141" props="font-family:Hack Nerd Font">│     └──   pas_image.jpg</p>
+<p style="Normal" xid="142" props="font-family:Hack Nerd Font">├──   index.php</p>
+<p style="Normal" xid="143" props="font-family:Hack Nerd Font">├──   jouer</p>
+<p style="Normal" xid="144" props="font-family:Hack Nerd Font">│  ├──   cardQuestionnaire.php</p>
+<p style="Normal" xid="145" props="font-family:Hack Nerd Font">│  ├──   carte.php</p>
+<p style="Normal" xid="146" props="font-family:Hack Nerd Font">│  ├──   choixQuestionnaire.php</p>
+<p style="Normal" xid="147" props="font-family:Hack Nerd Font">│  └──   joue.php</p>
+<p style="Normal" xid="148" props="font-family:Hack Nerd Font">├──   navBar.php</p>
+<p style="Normal" xid="149" props="font-family:Hack Nerd Font">├──   questionnaire</p>
+<p style="Normal" xid="150" props="font-family:Hack Nerd Font">│  ├──   genererQuestionnaire.php</p>
+<p style="Normal" xid="151" props="font-family:Hack Nerd Font">│  ├──   getQuestionnaire.php</p>
+<p style="Normal" xid="152" props="font-family:Hack Nerd Font">│  ├──   modifQuestionnaire.php</p>
+<p style="Normal" xid="153" props="font-family:Hack Nerd Font">│  └──   questionnaire.php</p>
+<p style="Normal" xid="154" props="font-family:Hack Nerd Font">├──   script</p>
+<p style="Normal" xid="155" props="font-family:Hack Nerd Font">│  └──   carte.js</p>
+<p style="Normal" xid="156" props="font-family:Hack Nerd Font">└──   user</p>
+<p style="Normal" xid="157" props="font-family:Hack Nerd Font">   ├──   login.php</p>
+<p style="Normal" xid="158" props="font-family:Hack Nerd Font">   ├──   logout.php</p>
+<p style="Normal" xid="159" props="font-family:Hack Nerd Font">   └──   register.php</p>
+<p style="Normal" xid="160"><c></c></p>
+<p style="Normal" xid="161"><c></c></p>
+<p style="Normal" xid="209">Gestion des questionnaires</p>
+<p style="Normal" xid="211">fichier associé :</p>
+<p style="Normal" xid="212">questionnaire/questionnaire.php</p>
+<p style="Normal" xid="213"><c></c></p>
+<p style="Normal" xid="214">Un questionnaire se présente sous la forme d’une liste de code iso 3 (code à trois caractères représentant un pays). Dans notre projet, il existe deux manière de générer cette liste de pays :</p>
+<p style="Normal" xid="217">- Génération automatique : le fichier genererQuestionnaire.php prend deux arguments pour une requete get. Un argument size, qui represente la taille du questionnaire à générer, et un argument continent. Le code choisit alors size pays aléatoirement. C’est un choix avec remise, ainsi il peut y avoir plusieurs fois le même pays dans un questionnaire. Ce choix est fait pour éviter le problème des tailles trop grandes par rapport au nombre de pays dans un continent. La sortie se fait en json pour faciliter le traitement.</p>
+<p style="Normal" xid="218">- Questionnaire «pré-composé» : le fichier getQuestionnaire.php prend en paramètre d’une requete get l’id d’un questionnaire (voire partie base de donnée). Le fichier renvoie la liste des codes iso qui compose le questionnaire, sous le format json.</p>
+<p style="Normal" xid="228"><c></c></p>
+<p style="Normal" xid="229">Modification des questionnaires pré-composé</p>
+<p style="Normal" xid="230">fichier associé :</p>
+<p style="Normal" xid="231">admin/questionnaire.php</p>
+<p style="Normal" xid="232">admin/modifQuestionnaire.php</p>
+<p style="Normal" xid="234">Seul l’administrateur à le droit d’accès à ces pages.</p>
+<p style="Normal" xid="235">1) Créer : ajax</p>
+<p style="Normal" xid="237">2) Selection questionnaire : ajax sur getfull pays</p>
+<p style="Normal" xid="238">3) ajouter pays : ajax sur getfullpays et l’autre</p>
+<p style="Normal" xid="239">4) Supprimer : ajax puis reload (explication)</p>
+<p style="Normal" xid="241">5) modification : requete formulaire nom + desc + upload</p>
+<p style="Normal" xid="219"><c></c></p>
+<p style="Normal" xid="221">Affichage</p>
+<p style="Normal" xid="222">fichier associé:</p>
+<p style="Normal" xid="223">choixQuestionnaire.php</p>
+<p style="Normal" xid="225">cardQuestionnaire.php</p>
+<p style="Normal" xid="244">L’utilisateur peut choisir un questionnaire dans choixQuestionnaire.</p>
+<p style="Normal" xid="246">Pour la génération automatique de questionnaire, l’utilisateur peut entrer dans un formulaire la taille et le continent du pays à générer. Ces paramètres sont alors passé au fichier carte.php.</p>
+<p style="Normal" xid="248">Les questionnaires déjà préparé sont affiché sous forme de « card » bootstrap, (nom, description et image du questionnaire), dans une balise card column. La fonction qui génère une card à partir d’un  questionnaire est placée dans le fichier cardQuestionnaire.php, afin de facilité la ré-utilisabilité du code. Lorsque l’utilisateur clique sur le bouton jouer, l’id du questionnaire est passé à la page carte.php.</p>
+<p style="Normal" xid="227"><c></c></p>
+<p style="Normal" xid="162" props="font-weight:bold">Gestion du jeu</p>
+<p style="Normal" xid="163">fichier associé :</p>
+<p style="Normal" xid="164">carte.php</p>
+<p style="Normal" xid="165">carte.js</p>
+<p style="Normal" xid="166">getPays.php</p>
+<p style="Normal" xid="167"><c></c></p>
+<p style="Normal" xid="168">Nous avons mis les fonctions javascript dans un fichier à part, carte.js, pour alléger le code.</p>
+<p style="Normal" xid="249">Le questionnaire est généré dans le code php, en fonction des paramètres définis (continent + size, ou id), en appelant la page genererQuestionnaire.php, ou getQuestionnaire.php. La liste de pays (sous forme de code iso) est placé dans la variable questionnaire.</p>
+<p style="Normal" xid="170">Au début du jeu, et à chaque nouvelle question (après le clique sur le bouton suivant), la fonction javascript nouvelleQuestion est appelée. Cette fonction fait plusieurs choses:</p>
+<p style="Normal" xid="252">- Actualise graphiquement le score, avance la barre d’avancement</p>
+<p style="Normal" xid="251">- Réalise un appel ajax à getPays.php (en passant un code iso en paramètre), pour récupérer les information sur le prochain pays (voir section base de donnée)</p>
+<p style="Normal" xid="253">- Actualise les champs dans la modal information, place le drapeau du pays. Les contours du pays sont placé sur la carte </p>
+<p style="Normal" xid="171"><c></c></p>
+<p style="Normal" xid="172"><c></c></p>
+<frame strux-image-dataid="2" xid="173" props="wrap-mode:wrapped-both; frame-height:11.086cm; frame-type:image; bot-style:none; top-style:none; right-style:none; frame-width:13.282cm; left-style:none; position-to:block-above-text">
+</frame><p style="Normal" xid="174" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="4" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="5" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="6" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="7" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="8" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="9" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="10" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="11" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="12" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="13" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="14" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="15" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="16" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="17" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="18" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="19" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="20" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="21" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="22" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="23" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="24" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="25" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c></p>
+<p style="Normal" xid="26" props="font-weight:normal; text-decoration:underline; font-style:normal"><c></c>Pays</p>
+<p style="Normal" xid="175">Fichier annexe :</p>
+<p style="Normal" xid="176">createPays.sql</p>
+<p style="Normal" xid="177">insertPays.sql</p>
+<p style="Normal" xid="178">La table Pays contient les informations de chaque pays. Sa clé primaire (id) est auto-incrémenté. Son code Iso à 3 caractère est unique. L’attribut LienWiki correspond au nom de la page wikipedia du pays. En général, cet attribut est égal au nom du pays, mais ce n’est pas toujours le cas.</p>
+<p style="Normal" xid="179">Les contours du pays sont stocké sous forme d’une chaîne geojson.</p>
+<p style="Normal" xid="180">Le fichier insertPays.sql a été généré à l’aide d’un script python, a partir des données contenues dans le fichier countries.json.</p>
+<p style="Normal" xid="181">Nous avons choisi de ne pas stocker le lien vers le drapeaux dans la table, mais de le générer dans le fichier getPays.php. En effet, pour tout les pays le liens vers l’image du drapeaux est : images/drapeaux/<c props="font-style:italic">iso</c>.svg. Il est donc plus simple de générer ce lien dans un fichier php, et plus simple pour le modifier si le développeur décide plus tard de changer la localisation de ces images.</p>
+<p style="Normal" xid="182"><c></c></p>
+<p style="Normal" xid="183" props="text-decoration:underline">Questionnaire</p>
+<p style="Normal" xid="184">Fichier annexe :</p>
+<p style="Normal" xid="185">createQuestionnaire.sql</p>
+<p style="Normal" xid="186">À l’instar de la table Pays, la clé principal de la table questionnaire (id) est auto-incrémenté. Un questionnaire possède un nom, une description, et le nom d’une image. On stocke simplement le nom de l’image, pas le chemin complet (même raison que pour la table pays, si on change de stockage pour ces images, on ne veut pas modifier toutes les lignes de la table…)</p>
+<p style="Normal" xid="187">On défini une image par défaut qui s’affichera si l’admin ne téleverse pas d’image pour un questionnaire.</p>
+<p style="Normal" xid="188"><c></c></p>
+<p style="Normal" xid="189"><c></c></p>
+<p style="Normal" xid="190"><c></c></p>
+<p style="Normal" xid="191" props="text-decoration:underline">Question</p>
+<p style="Normal" xid="192">Fichier annexe :</p>
+<p style="Normal" xid="193">createQuestionnaire.sql</p>
+<p style="Normal" xid="194">Cette table fait la correspondance entre un questionnaire et une ou plusieurs question. Des contraintes « foreign key » sont defini.</p>
+<p style="Normal" xid="195">On a défini une contrainte « on delete cascade » sur l’attribut « id » (clé étrangère de la table Questionnaire), la suppression d’un questionnaire entraine alors la suppression de toutes les questions qui lui sont associé.</p>
+<p style="Normal" xid="196"><c></c></p>
+<p style="Normal" xid="197">V Sécurité</p>
+<p style="Normal" xid="198" props="text-decoration:underline">Base de donnée</p>
+<p style="Normal" xid="199">Les accès à la base de donnée via PHP sont effectués avec des requête préparé de PDO, ce qui protège l’application des injections SQL.</p>
+<p style="Normal" xid="200"><c></c></p>
+<p style="Normal" xid="201" props="text-decoration:underline">File Upload</p>
+<p style="Normal" xid="202">Il il y a une unique fonctionnalité de téléversement de fichier sur l’application web. Elle se trouve dans le fichier questionnaire.php. Cette fonctionnalité n’est pas sécurisée, en effet le seul utilisateur ayant accès à cette fonctionnalité est l’utilisateur admin. On considére que cet utilisateur est aussi l’administrateur du site. Si cette fonctionnalité venait à être accessible à d’autre utilisateur, il faudrait sécuriser ce point d’entré en vérifiant que le fichier d’entré est bien une image, que les métadata ne contiennent pas de code malveillant (comme du code php), vérifier le nom de fichier, etc.</p>
+<p style="Normal" xid="203"><c></c></p>
+<p style="Normal" xid="204"><c></c></p>
+<p style="Normal" xid="205"><c></c></p>
+<p style="Normal" xid="206">Cross site scripting</p>
+<p style="Normal" xid="207">Une faille de type XSS arrive lorsque le serveur ou le code javascript (DOM XSS) prend en entrée du texte entré par l’utilisateur, et affiche ce texte sur la page sans l’avoir filtré. Il n’existe pas de telle fonctionnalités dans notre projet (à part pour l’administrateur, création des questionnaires). </p>
+</section>
+<data>
+<d name="2" mime-type="image/svg+xml" base64="no">
+<![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" style="background-color: rgb(255, 255, 255);" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="501px" height="418px" viewBox="-0.5 -0.5 501 418" content="&lt;mxfile host=&quot;app.diagrams.net&quot; modified=&quot;2020-06-08T10:25:26.408Z&quot; agent=&quot;5.0 (X11)&quot; etag=&quot;kSuJw2KEeW_TGVXYf63r&quot; version=&quot;13.1.3&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;xwZqfe_8cB-L9_Hj_leq&quot; name=&quot;Page-1&quot;&gt;7ZpRT9swEMc/TaXtYShx2tI9QsvGUJEQnQbbm0lM4uHYmePShk+/c2M3DaZQKCVIRKrU+HxO7PvZyd+XdIJhOv8ucZacioiwDvKieScYdRDyfQ/Bn7YUpaU3MIZY0sg4VYYJvSPG6BnrlEYkrzkqIZiiWd0YCs5JqGo2LKWY1d2uBatfNcMxcQyTEDPXekEjlZTWAdqv7MeExom9st//Wtak2DqbkeQJjsRsxRQcdYKhFEKVR+l8SJgOno1L2e7bmtplxyThapMGsxmfHPwZ3R1fnqgTKou75Bx/8XvlaW4xm5oR/5uSXFEIJ6aSmK6rwsYjn9GUYQ6lw2vB1cTUeFAOE8qiMS7EVPcnVzi8saXDREh6B/6YQZUPBqiWyuBG/ZrHRLc055QkB58zO0j/nukUz2uOY5wr2xvBGM5yerXon26YYhlTfiiUEqlxwozGHI5DOBeRdkxlr/wulE10iFRkvjbu/pImLAMiUqJkAS62Qd9MALMC/MCUZ9V8Wvokq3PJOmIzh+PluSvMcGBIP4d636FO9WAOyob3mcPY1QKZFDdkKJiASI24KCcBZeyeKc9wSHk8Jtd6IN3Kcm7Gpk0CYnrNFushoVFEuGYoFFb4ajmhMgG9Woy9dwg/iMbQ2+t1etCnIZT9qgw/7S7VUHDoJl6MZkRgNsyInhE1ruje3O1uBPmR5eOiN6hRfzPS1u/1Qe87oH9hGSZYlrA5rIQPQHtngHuoacADB/DtKmB4doaSZvp+3oLeAvT+oGnQXx8HTVMtZFrEL0fse92GGSNXjGW4yFsNtrUG63l1DRb4G2owFHR3BfthDQYivpVhz13Z6J3LMOTKMH3n/hR8XvIOYef8IxfBR6C+M9CNyzH0hBxr9fZ2gBuXYegJGRZCJCjXY2wxvxxz81LMpl7WcR5Twi/oDW0xb4N500zY7jD7DuafC4B2LYupdPV3y/gZjHtNiy+r4B9KdjLc3qi3omvf5jRH190zV3TbpNd2+yavabkVIAcgiWJit4wQpETEgmN2VFkh9FMekcgEvvIZC5F1yjTEX6JUYWKIp0ro3IdKbV6kvKa+0NpwGlMOz4eQPBZhEy2FZUweRTF4GIUkcI+it/WevH6c3X3nG8QZoimLS90eZr4p/tZ1e14wsIaRzS6VpWK1dEYkhQDorNHC2AS4MjHbFDjk6lT7/tYh2qYN10yHjV/dBv0NH3d2n/r6vF3B2r65fdGjz3uY/LtJGSIHtE0Zfrh84dsg32HyEIrVdz6LupWvpYKj/w==&lt;/diagram&gt;&lt;/mxfile&gt;"><defs><clipPath id="mx-clip-4-31-152-26-0"><rect x="4" y="31" width="152" height="26"/></clipPath><clipPath id="mx-clip-4-57-152-26-0"><rect x="4" y="57" width="152" height="26"/></clipPath><clipPath id="mx-clip-4-83-152-26-0"><rect x="4" y="83" width="152" height="26"/></clipPath><clipPath id="mx-clip-4-109-152-26-0"><rect x="4" y="109" width="152" height="26"/></clipPath><clipPath id="mx-clip-344-211-152-26-0"><rect x="344" y="211" width="152" height="26"/></clipPath><clipPath id="mx-clip-344-237-152-26-0"><rect x="344" y="237" width="152" height="26"/></clipPath><clipPath id="mx-clip-344-263-152-26-0"><rect x="344" y="263" width="152" height="26"/></clipPath><clipPath id="mx-clip-344-289-152-26-0"><rect x="344" y="289" width="152" height="26"/></clipPath><clipPath id="mx-clip-344-315-152-26-0"><rect x="344" y="315" width="152" height="26"/></clipPath><clipPath id="mx-clip-344-341-152-26-0"><rect x="344" y="341" width="152" height="26"/></clipPath><clipPath id="mx-clip-344-367-152-26-0"><rect x="344" y="367" width="152" height="26"/></clipPath><clipPath id="mx-clip-344-393-152-26-0"><rect x="344" y="393" width="152" height="26"/></clipPath><clipPath id="mx-clip-4-263-152-26-0"><rect x="4" y="263" width="152" height="26"/></clipPath><clipPath id="mx-clip-4-289-152-26-0"><rect x="4" y="289" width="152" height="26"/></clipPath></defs><g><path d="M 0 26 L 0 0 L 160 0 L 160 26" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="all"/><path d="M 0 26 L 0 130 L 160 130 L 160 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 26 L 160 26" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="14px"><text x="79.5" y="18.5">questionnaire</text></g><g fill="#000000" font-family="Helvetica" text-decoration="underline" clip-path="url(#mx-clip-4-31-152-26-0)" font-size="12px"><text x="5.5" y="43.5">int: id</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-4-57-152-26-0)" font-size="12px"><text x="5.5" y="69.5">Varchar: nom</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-4-83-152-26-0)" font-size="12px"><text x="5.5" y="95.5">varchar: description</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-4-109-152-26-0)" font-size="12px"><text x="5.5" y="121.5">varchar: image</text></g><path d="M 340 206 L 340 180 L 500 180 L 500 206" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 340 206 L 340 414 L 500 414 L 500 206" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 340 206 L 500 206" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="14px"><text x="419.5" y="198.5">pays</text></g><g fill="#000000" font-family="Helvetica" text-decoration="underline" clip-path="url(#mx-clip-344-211-152-26-0)" font-size="12px"><text x="345.5" y="223.5">int : id</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-344-237-152-26-0)" font-size="12px"><text x="345.5" y="249.5">char(3) : codeIso3</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-344-263-152-26-0)" font-size="12px"><text x="345.5" y="275.5">varchar: nom</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-344-289-152-26-0)" font-size="12px"><text x="345.5" y="301.5">varchar: continent</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-344-315-152-26-0)" font-size="12px"><text x="345.5" y="327.5">varchar: LienWiki</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-344-341-152-26-0)" font-size="12px"><text x="345.5" y="353.5">Text: contours</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-344-367-152-26-0)" font-size="12px"><text x="345.5" y="379.5">int: lat</text></g><g fill="#000000" font-family="Helvetica" clip-path="url(#mx-clip-344-393-152-26-0)" font-size="12px"><text x="345.5" y="405.5">int: lon</text></g><path d="M 160 271 L 333.63 271" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 338.88 271 L 331.88 274.5 L 333.63 271 L 331.88 267.5 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 80 232 L 80 137.36" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 80 132.11 L 83.5 139.11 L 80 137.36 L 76.5 139.11 Z" fill="#000000" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 258 L 0 232 L 160 232 L 160 258" fill="#ffffff" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 258 L 0 310 L 160 310 L 160 258" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><path d="M 0 258 L 160 258" fill="none" stroke="#000000" stroke-miterlimit="10" pointer-events="none"/><g fill="#000000" font-family="Helvetica" text-anchor="middle" font-size="14px"><text x="79.5" y="250.5">question</text></g><g fill="#000000" font-family="Helvetica" text-decoration="underline" clip-path="url(#mx-clip-4-263-152-26-0)" font-size="12px"><text x="5.5" y="275.5">int: id</text></g><g fill="#000000" font-family="Helvetica" text-decoration="underline" clip-path="url(#mx-clip-4-289-152-26-0)" font-size="12px"><text x="5.5" y="301.5">char(3): codeIso3</text></g></g></svg>]]>
+</d>
+</data>
+</abiword>
