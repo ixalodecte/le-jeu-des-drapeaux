@@ -1,0 +1,23 @@
+<div class="modal fade" id="modalLogin">
+    <div class="modal-dialog">
+        <div class="modal-content p-4">
+            <form  action="/user/login.php" method="POST">
+                
+                <div class="form-div">
+                    <h2 >Login</h2>
+                    <hr class="mb-3">
+                    <div>
+                        <label> Email</label>
+                        <input class="form-control" type="email"  placeholder= "exemple@exemple. " name="email" required /> 
+                    </div>
+                    <div>
+                        <label>Password</label>
+                        <input class="form-control" type="text" placeholder= " Password" name="password" required />
+                    </div>
+                    <hr class="mb-3">
+                    <input  class="btn btn-primary btn-block" type="submit" name="Login" value="Login" class="form_bouton"/>
+                </div>
+            </form> 
+        </div>
+    </div>
+</div>

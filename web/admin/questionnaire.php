@@ -1,4 +1,5 @@
 <?php
+    session_start();
     include_once("../config.php");
     $dossierDestination = "../images/questionnaire/";
     $fichierDestination = $dossierDestination . basename($_FILES["fileToUpload"]["name"]);
@@ -15,6 +16,19 @@
             
             if ($uploadOk == 1){
                 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $fichierDestination)) {
+                    //On supprime l'image précedente du serveur
+                    $sql="SELECT image from questionnaire WHERE id=?";
+                    $select=$con->prepare($sql);
+                    $select->execute([$id]);
+                    if($select->rowCount()>0)
+                    {
+                        $data=$select->fetch(PDO::FETCH_ASSOC);
+                        $image = $data["image"];
+                        if ($image !== "pas_image.jpg"){
+                            unlink("../images/questionnaire/" . $image);
+                        }                        
+                    }
+
                     $sql="UPDATE questionnaire set image=? WHERE id=?";
                     $update=$con->prepare($sql);
                     $update->execute([$_FILES["fileToUpload"]["name"],$id]);
@@ -60,19 +74,21 @@
 
 </head>
 <body>
-    <h2 id="titreQuestionnaire" class="text-center mr-3">
-        Choisissez un questionnaire
-        <button type="button" id = "proposerModifierQuestionnaire" class="btn btn-primary mr-2" data-toggle="collapse" data-target="#collapse_modif" disabled>
-            Modifier
-        </button>
-        <button id="proposerSupprimerQuestionnaire" type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalSupprimer" disabled>
-            Supprimer
-        </button>
-    </h2>
+    <div class="mt-3">
+        <h2 id="titreQuestionnaire" class="text-center mr-3">
+            Choisissez un questionnaire
+            <button type="button" id = "proposerModifierQuestionnaire" class="btn btn-primary mr-2" data-toggle="collapse" data-target="#collapse_modif" disabled>
+                Modifier
+            </button>
+            <button id="proposerSupprimerQuestionnaire" type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalSupprimer" disabled>
+                Supprimer
+            </button>
+        </h2>
+    </div>
 
     <!-- Pour modifier un questionnaire existant -->
     <div id="collapse_modif" class="collapse">
-        <div class="container p-2">
+        <div class="container shadow p-2">
             <!-- Form, contient:
                 nom du questionnaire (updateNom)
                 description du questionnaire (nouvelleQuestion)
@@ -99,14 +115,13 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary" id="modifierImage" name = "submit">Modifier</button>
-                </div>
             </form>
         </div>
     </div>
 
 <div class="d-flex p-3">
     <!-- La liste des questionnaire -->
-    <div class="container  p-5" id="questionnaire">
+    <div class="container shadow p-5 mr-3" id="questionnaire">
 
         <!-- Input pour ajouter un questionnaire -->
         <div class="input-group mb-3">
@@ -126,7 +141,7 @@
     </div >
 
     <!-- La liste des pays dans un questionnaire -->
-    <div class = "container  p-5">
+    <div class = "container shadow p-5">
 
         <!-- Input pour ajouter un pays -->
         <div class="input-group mb-3 ">
@@ -263,7 +278,7 @@
 
     // Rempli le tableau avec la liste des pays qui sont dans le questionnaire passé en parametre
     function remplirTableauQuestion(id){
-        $.getJSON("getQuestionnaire.php", {full : "", id : id}, function( data ) {
+        $.getJSON("/questionnaire/getQuestionnaire.php", {full : "", id : id}, function( data ) {
             var html = "";
             for (p of data){
                 html += "<tr>";

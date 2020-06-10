@@ -7,10 +7,7 @@ if (isset($_GET["size"])){
     $size = $_GET["size"];
 
     if (isset($_GET["continent"])){
-        //Transformer requete "e1,e2,...,en" en "e1' or continent = 'e2' ... or continent = 'en'"
-        $continent = explode(",", $_GET["continent"]);
-        $continent = join("' OR continent='",$continent);
-
+        $continent = $_GET["continent"];
         $sql="SELECT codeIso3 FROM pays WHERE continent='$continent'";
     }
 

@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -7,6 +9,7 @@
         <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
 
         <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -19,7 +22,6 @@
         
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script> 
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
         
     </head>
@@ -27,7 +29,12 @@
 
     <body>
     <?php include_once("../navBar.php");?>
-        <div class="container">
+
+
+        <div class="container shadow mt-3 p-4">
+            <?php
+                if (isset($_SESSION["email"])){
+            ?>
             <h2>Generer un questionnaire aléatoirement</h2>
             <form action="carte.php" method="get" class="form-inline">
                 <label for="selectContinent" class ="mr-sm-2">Continent : </label>
@@ -39,12 +46,19 @@
                     <option value="Océanie">Océanie</option>
                     <option value="Antarctique">Antarctique</option>
                 </select>
-                <label class="mr-sm-2" for="taille">Taille du questionnaire : </label>
+                <label class="mr-sm-2" for="taille">Nombre de question : </label>
                 <input class="mr-sm-2 mb-2" value=1 name="size" type="number" id="replyNumber" min="1" step="1" data-bind="value:replyNumber" />
                 <input class = "btn btn-primary mr-sm-2 mb-2" type="submit" value="Jouer">
 
 
             </form>
+            <?php } 
+            else {
+            ?>
+                <h2>Vous n'etes pas inscrit</h2>
+
+            <?php } ?>
+        
             <hr class="mb-3">
             <h2>Choisissez un questionnaire</h2>
             <div class="card-columns">

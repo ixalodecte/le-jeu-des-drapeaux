@@ -27,9 +27,10 @@
 
 
     <body>
+    <div class="container shadow">
         
         <!-- La barre de progression (avancement du questionnaire)-->
-        <div class="progress">
+        <div class="progress mb-3 mt-3">
             <div class="progress-bar" style="width:20%"></div>
         </div>
         
@@ -114,7 +115,7 @@
             
         <!-- La Carte -->
         <div id="maDiv" style="width: 100%; height: 500px"></div>
-        
+        </div>
         <!-- Script pour la carte -->
         <script>
             // bornes pour empecher la carte StamenWatercolor de "dériver" trop loin...
@@ -149,31 +150,32 @@
                 L.Util.formatNum(latlng.lng, precision) + ',' +
                 L.Util.formatNum(latlng.lat, precision) + ']';
             }
-            <?php
-                if (isset($_GET["id"])){
-                    $id = $_GET["id"];
-                    if (ctype_digit($id)){
-                        echo "id=" . $id . "\n";
-                        $lienQuestionnaire = "/questionnaire/getQuestionnaire.php?id=" . $id;
-                    }
-                }
-                elseif (isset($_GET["size"]) and isset($_GET["continent"])){
-                    $size = $_GET["size"];
-                    $continent = $_GET["continent"];
-                    //Verification des paramètres par sécurité
-                    if (ctype_digit($size) and in_array($continent, ["Europe", "Afrique", "Asie", "Océanie", "Antarctique", "Amerique"], true)){
-                        echo "continent='" . $continent . "'\n";
-                        $lienQuestionnaire = "/questionnaire/genererQuestionnaire.php?size=" . $size . "&continent=" . $continent;
 
-                    }
-                }
-                else {
-                    echo "coucou";
-                }
-                echo "questionnaire = " . file_get_contents('http://127.0.0.1' . $lienQuestionnaire);
-            ?>
             
             $(document).ready(function(){
+                <?php
+                    if (isset($_GET["id"])){
+                        $id = $_GET["id"];
+                        if (ctype_digit($id)){
+                            echo "id=" . $id . "\n";
+                            $lienQuestionnaire = "/questionnaire/getQuestionnaire.php?id=" . $id;
+                        }
+                    }
+                    elseif (isset($_GET["size"]) and isset($_GET["continent"])){
+                        $size = $_GET["size"];
+                        $continent = $_GET["continent"];
+                        //Verification des paramètres par sécurité
+                        if (ctype_digit($size) and in_array($continent, ["Europe", "Afrique", "Asie", "Océanie", "Antarctique", "Amerique"], true)){
+                            echo "continent='" . $continent . "'\n";
+                            $lienQuestionnaire = "/questionnaire/genererQuestionnaire.php?size=" . $size . "&continent=" . $continent;
+
+                        }
+                    }
+                    else {
+                        echo "coucou";
+                    }
+                    echo "questionnaire = " . file_get_contents('http://127.0.0.1' . $lienQuestionnaire) . "\n";
+                ?>
                 nombreDeQuestion = questionnaire.length;
                 nouvelleQuestion();
                 map.on('click', onMapClick);

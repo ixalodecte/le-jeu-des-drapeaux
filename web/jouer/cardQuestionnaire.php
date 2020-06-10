@@ -11,7 +11,7 @@ function composeCard($id,$con){
     {
         $data=$select->fetch(PDO::FETCH_ASSOC);
         $ls =array();
-        echo "<div class=\"card\">\n";
+        echo "<div class=\"card shadow-sm\">\n";
         echo "<img class=\"card-img-top\" src=\"/images/questionnaire/" . $data["image"] . "\" alt=\"Card image\" style=\"width:100%\">\n";
         echo "<div class=\"card-body\">\n";
         echo "<h4 class=\"card-title\">". $data["nom"] ."</h4>\n";

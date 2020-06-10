@@ -8,7 +8,7 @@
 <body>
 	
 <h2> Connect or Register </h2>
-<a href="connect.php">Login</a> or <a href="register.php">Register</a>
+<a href="login.php">Login</a> or <a href="register.php">Register</a>
 
 </body>
 </html>
