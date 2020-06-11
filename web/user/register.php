@@ -28,10 +28,10 @@ if(empty($_POST['email'])){
 if(!empty($_POST['email'])&& !empty($_POST['password'])&& $_POST['password']==$_POST['confirmpassword'])
 {
 
-$insert=$con->prepare("INSERT INTO  joueurs(email,password) VALUES('$email','$password')");
+$insert=$con->prepare("INSERT INTO  joueurs(email,password) VALUES(?, ?)");
 $insert->bindPARAM(':email',$email);
 $insert->bindPARAM(':password',$password);
-$insert->execute();
+$insert->execute([$email, $password]);
 if($insert){
 echo "user has been registered successfully";
 header("location:/jouer/choixQuestionnaire.php");

@@ -74,6 +74,8 @@
 
 </head>
 <body>
+<?php include_once("../navBar.php");?>
+
     <div class="mt-3">
         <h2 id="titreQuestionnaire" class="text-center mr-3">
             Choisissez un questionnaire

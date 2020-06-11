@@ -8,16 +8,20 @@ if (isset($_GET["size"])){
 
     if (isset($_GET["continent"])){
         $continent = $_GET["continent"];
-        $sql="SELECT codeIso3 FROM pays WHERE continent='$continent'";
+        $sql="SELECT codeIso3 FROM pays WHERE continent=?";
+        $select=$con->prepare($sql);
+        $select->execute([$continent]);
+        $paysCandidat=$select->fetchAll();
     }
 
     else{
         //Si pas de continent spécifier : totalité du monde
         $sql="SELECT codeIso3 FROM pays";
+        $select=$con->prepare($sql);
+        $select->execute();
+        $paysCandidat=$select->fetchAll();
     }
-    $select=$con->prepare($sql);
-    $select->execute();
-    $paysCandidat=$select->fetchAll();
+
     //json_encode($paysCandidat);
     //
 

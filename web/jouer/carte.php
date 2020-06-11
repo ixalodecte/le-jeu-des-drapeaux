@@ -27,6 +27,8 @@
 
 
     <body>
+    <?php include_once("../navBar.php");?>
+
     <div class="container shadow">
         
         <!-- La barre de progression (avancement du questionnaire)-->
@@ -38,7 +40,7 @@
         <div class="row bg-light text-dark">
 
             <!-- Nom du questionnaire -->
-            <div class="col-3" id="nomQuestionnaire"><p>Questionnaire : Monde Entier</p></div>
+            <div class="col-3"><p>Bonne chance!</p></div>
             
             <!-- Compteur de points -->
             <div class="col-3"><p>Nombre de points : </p> <p> <span  id="compteurPoint">0</span>  <span  id="incrementPoint" style="color: forestgreen;"></span> </p></div>

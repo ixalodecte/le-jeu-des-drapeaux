@@ -5,7 +5,7 @@
     include_once("../user/registerModal.html");?>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <!-- Brand -->
-  <a class="navbar-brand" href="/jouer/choixQuestionnaire.php">Questionnaires</a>
+  <a class="navbar-brand" href="/jouer/choixQuestionnaire.php">Jeu des drapeaux</a>
 
   <!-- Links -->
   <ul class="navbar-nav">
@@ -17,24 +17,19 @@
       <a class="nav-link" data-toggle="modal" data-target="#modalLogin">Connexion</a>
     </li>
 
-
   <?php } else{ ?>
 
     <li class="nav-item">
       <a class="nav-link" href="/user/logout.php">Déconnexion</a>
     </li>
-  <?php } ?>
+    <?php if($_SESSION["email"] == "admin@admin.fr") { ?>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/questionnaire.php">modifier questionnaire</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/admin/joue.php">liste des joueur</a>
+      </li>
+  <?php }} ?>
 
-    <!-- Dropdown -->
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        Dropdown link
-      </a>
-      <div class="dropdown-menu">
-        <a class="dropdown-item" href="#">Link 1</a>
-        <a class="dropdown-item" href="#">Link 2</a>
-        <a class="dropdown-item" href="#">Link 3</a>
-      </div>
-    </li>
   </ul>
 </nav> 

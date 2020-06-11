@@ -6,10 +6,10 @@ include_once("config.php");
 if (isset($_GET["iso"])){
     $iso = $_GET["iso"];
 
-    $sql="SELECT * FROM pays WHERE codeIso3='$iso'";
+    $sql="SELECT * FROM pays WHERE codeIso3=?";
     $select=$con->prepare($sql);
 
-    $select->execute();
+    $select->execute([$iso]);
     if($select->rowCount()>0)
     {
         $data=$select->fetch(PDO::FETCH_ASSOC);
